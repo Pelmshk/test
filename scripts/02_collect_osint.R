@@ -266,6 +266,15 @@ smart_fetch <- function(url, cache_dir, cache_name, expect = c("feed", "json", "
       any  = nzchar(payload) && !is_antibot_page(payload))
     if (isTRUE(good_cached) && !is_antibot_page(payload))
       return(list(txt = payload, via = "cache"))
+    # OFFLINE loose-фолбэк для кэша: smart_fetch строг к формату, но часть
+    # кэшей — HTML-страницы прокси или feeds с незнакомой разметкой. Если файл
+    # на диске не антибот и содержит хоть какой-то контент, отдаём его как есть:
+    # парсеры вызывающих функций (parse_feed_xml / parse_markdown_links /
+    # parse_gdelt_payload) сами решат, извлекаемо ли что-то. Это решает случай
+    # NASA/ESA/CISA, где кэш валиден по содержимому, но не проходит строгую
+    # сигнатуру формата.
+    if (OFFLINE && nzchar(payload) && !is_antibot_page(payload))
+      return(list(txt = payload, via = "cache-loose"))
   }
   if (OFFLINE) return(list(txt = NULL, via = NA_character_))
 
@@ -462,7 +471,17 @@ collect_cisa <- function() {
                      expect = if (nm == "kev") "json" else "feed")
     if (is.null(r$txt)) { log_step("CISA", sprintf("x  %s — недоступен (антибот на всех каналах)", nm)); next }
     if (nm == "kev") {
-      j <- tryCatch(jsonlite::fromJSON(r$txt), error = function(e) NULL)
+      # KEV-кэш может лежать внутри reader-markdown (r.jina.ai оборачивает
+      # JSON в текст с преамбулой). strip_reader_preamble уже применён в
+      # smart_fetch, но на случай cache-loose дополнительно вырезаем {...}.
+      json_txt <- r$txt
+      j <- tryCatch(jsonlite::fromJSON(json_txt), error = function(e) NULL)
+      if (is.null(j)) {
+        m <- regexpr("\\{.*\\}", json_txt, perl = TRUE)
+        if (m > 0) j <- tryCatch(
+          jsonlite::fromJSON(substr(json_txt, m[1], m[1] + attr(m, "used") - 1)),
+          error = function(e) NULL)
+      }
       v <- j$vulnerabilities
       if (is.null(v) || !nrow(v)) { log_step("CISA", sprintf("x  %s — JSON не распарсен", nm)); next }
       sel <- v[grepl(CISA_KW, paste(v$product, v$cveID, v$shortDescription), ignore.case = TRUE), ]
