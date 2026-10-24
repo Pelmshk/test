@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>The Record from Recorded Future News</title>
+        <link>https://therecord.media/feed</link>
+        <description>The Record by Recorded Future News gives exclusive, behind-the-scenes access to leaders, policymakers, researchers, and the shadows of the cyber underground.</description>
+        <lastBuildDate>Fri, 23 Oct 2026 17:28:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>The Record from Recorded Future News</generator>
+        <language>en</language>
+        <copyright>Copyright © 2026 | The Record from Recorded Future News</copyright>
+        <item>
+            <title><![CDATA[FCC bans two devices with surveillance chips linked to Huawei]]></title>
+            <link>https://therecord.media/fcc-bans-devices-huawei-surveillance-chips</link>
+            <guid>https://therecord.media/fcc-bans-devices-huawei-surveillance-chips</guid>
+            <pubDate>Fri, 23 Oct 2026 17:28:00 GMT</pubDate>
+            <description><![CDATA[The banned items — a wireless video transmitter and dashboard camera — are made with chips manufactured by Huawei subsidiary HiSilicon, which markets its products as “designed for the surveillance market.”]]></description>
+            <category>Government</category>
+            <category>News</category>
+            <category>News Briefs</category>
+            <category>Technology</category>
+            <category>Privacy</category>
+            <enclosure url="http://cms.therecord.media/uploads/fcc_f0096cadc5.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[UK proposes 14-year prison terms for undersea cable sabotage]]></title>
+            <link>https://therecord.media/uk-undersea-cables-sabotage-new-sentencing-guidelines</link>
+            <guid>https://therecord.media/uk-undersea-cables-sabotage-new-sentencing-guidelines</guid>
+            <pubDate>Fri, 23 Oct 2026 13:26:00 GMT</pubDate>
+            <description><![CDATA[In an era of hybrid threats, the British government wants to update the Submarine Telegraph Act 1885, which carries a maximum fine of £1,000 and five years’ imprisonment in cases of deliberate damage. ]]></description>
+            <category>Technology</category>
+            <category>Nation-state</category>
+            <category>News</category>
+            <category>Industry</category>
+            <category>Government</category>
+            <enclosure url="http://cms.therecord.media/uploads/undersea_cables_illustration_getty_unsplash_36603fb153.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Quest Diagnostics warns of potential data theft after attack on lab service system]]></title>
+            <link>https://therecord.media/quest-diagnostics-network-intrusion</link>
+            <guid>https://therecord.media/quest-diagnostics-network-intrusion</guid>
+            <pubDate>Fri, 23 Oct 2026 12:52:00 GMT</pubDate>
+            <description><![CDATA[Nationwide lab test company Quest Diagnostics said one of its key systems may have experienced a breach of patient data.]]></description>
+            <category>Cybercrime</category>
+            <category>Industry</category>
+            <category>News Briefs</category>
+            <category>News</category>
+            <enclosure url="http://cms.therecord.media/uploads/DSC_05112_bf00638451.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Reports of PHP bug exploitation attempts grow as experts downplay viability of exploits]]></title>
+            <link>https://therecord.media/php-php2shell-exploitation-attempts-pocs</link>
+            <guid>https://therecord.media/php-php2shell-exploitation-attempts-pocs</guid>
+            <pubDate>Fri, 23 Oct 2026 04:00:00 GMT</pubDate>
+            <description><![CDATA[The headline-grabbing bugs known colloquially as PHP2Shell are giving cyber analysts a lot to track — and a lot to debunk.]]></description>
+            <category>Technology</category>
+            <category>News</category>
+            <enclosure url="http://cms.therecord.media/uploads/php_shahadat_rahman_unsplash_14f00bee62.jpg" length="0" type="image/jpg"/>
+        </item>
+        <item>
+            <title><![CDATA[Toronto crime tips org freezes operations after details of data breach come to light]]></title>
+            <link>https://therecord.media/toronto-crime-tips-org-freezes-ops-after-breach</link>
+            <guid>https://therecord.media/toronto-crime-tips-org-freezes-ops-after-breach</guid>
+            <pubDate>Thu, 22 Oct 2026 20:52:00 GMT</pubDate>
+            <description><![CDATA[Late Wednesday night the Toronto chapter of Crime Stoppers broke ranks with the national association, revealing a timeline showing what it knew and when along with an announcement that it will pause operations.]]></description>
+            <category>Cybercrime</category>
+            <category>Industry</category>
+            <category>News</category>
+            <enclosure url="http://cms.therecord.media/uploads/Toronto_Police_PP_13cea6d12f.jpg" length="0" type="image/jpg"/>
+        </item>
+    </channel>
+</rss><!-- generated at 2026-10-24T07:48:52.850Z -->

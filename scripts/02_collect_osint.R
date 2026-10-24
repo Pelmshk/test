@@ -1,149 +1,533 @@
 #!/usr/bin/env Rscript
-# ============================================================
-# 02_collect_osint.R — ЭТАП 2: сбор OSINT-корпуса из открытых источников
+# ============================================================================
+# 02_collect_osint.R — ЭТАП 2: сбор OSINT-корпуса об инцидентах ИБ в космосе
+#                    (ИСПРАВЛЕННАЯ ВЕРСИЯ: обход антибот-страниц, макс. охват)
+# ----------------------------------------------------------------------------
+# ПРОБЛЕМА (старая версия): сайты отдавали вместо данных «антибот»-страницы:
+#   * Akamai "Access Denied"        (CISA)
+#   * Cloudflare "Just a moment..." (BleepingComputer и др.)
+#   * GDELT HTTP 429 rate-limit     (текст вместо JSON)
+#   * WordPress-фиды с блокировкой нестандартного User-Agent
 #
-# Источники (см. data/raw/sources_catalog.psv):
-#   - RSS лент (SpaceNews и др.)            — xml2/rvest
-#   - CISA Cybersecurity Advisories index   — rvest (scrape списка)
-#   - GDELT DOC 2.0 API                     — httr (JSON), событийные запросы
-#   - MITRE ATLAS STIX bundle               — httr+jsonlite (для словаря техник)
+# РЕШЕНИЕ (многоуровневый anti-bot evasion, без имитации личности):
+#   1. Браузерный стек заголовков (User-Agent Chrome + Accept-Language +
+#      Sec-Fetch-* + Upgrade-Insecure-Requests) — многие WAF пропускают
+#      запросы только с полным «человеческим» набором заголовков.
+#   2. Детектирование антибот-контента по сигнатурам (не сохранять мусор!).
+#   3. Автоматический повтор с экспоненциальной backoff при 429/503.
+#   4. Для GDELT — соблюдение правила >=6 сек между запросами + доп. пауза
+#      и повтор при rate-limit; валидация JSON перед парсингом.
+#   5. FALLBACK-ЦЕПОЧКА через открытые read-прокси (allorigins.win,
+#      codetabs proxy, corsproxy.io) — они стоят «на стороне клиента» и
+#      обычно не блокируются WAF целевого сайта.
+#   6. Вежливые джиттер-паузы между фидными запросами (anti-throttle).
+#   7. Кэширование всех СЫРЫХ снимков (только валидных!) в data/raw/<src>/ —
+#      повторный рендер воспроизводит корпус один в один (offline-режим).
 #
-# ПРИНЦИПЫ:
-#   * Каждый снимок сохраняется в data/raw/<source>/snapshot_<cutoff>.<ext>
-#     => повторный запуск при отсутствии сети работает с кэшем (воспроизводимость!).
-#   * Никаких выдуманных данных: парсер извлекает ТОЛЬКО то, что реально скачал.
-#   * set.seed(42); все сетевые таймауты ограничены.
+# ИСТОЧНИКИ:
+#   1. RSS   — космические + кибер + OT/ICS фиды (расширенный пул)
+#   2. GDELT DOC 2.0 — событийные паттерны (кандидаты, low reliability)
+#   3. CISA  — RSS advisories/ICS + KEV catalog (JSON)
+#   4. NASA  — RSS пресс-релизов/блогов + ESA news RSS
 #
-# Запуск: Rscript scripts/02_collect_osint.R [--offline]
-# ============================================================
+# ЕДИНАЯ СХЕМА ДАТАСЕТА (data/processed/corpus_raw.rds / .csv):
+#   source, source_feed, category, title, url, pub_date (chr ISO),
+#   event_date (chr, обычно NA), description, snapshot_date (Date)
+#
+# Запуск:  Rscript scripts/02_collect_osint.R [--offline] [--retries=N]
+# ============================================================================
 
 this_file <- sub("^--file=", "", grep("^--file=", commandArgs(FALSE), value = TRUE)[1])
 if (is.na(this_file) || !nzchar(this_file)) this_file <- "scripts/02_collect_osint.R"
 source(file.path(dirname(this_file), "00_config.R"))
 
 OFFLINE <- "--offline" %in% commandArgs(trailingOnly = TRUE)
+args    <- commandArgs(trailingOnly = TRUE)
+MAX_RETRIES <- as.integer(gsub("^--retries=", "", grep("^--retries=", args, value = TRUE)[1]))
+if (is.na(MAX_RETRIES)) MAX_RETRIES <- 3L
 
-## --- Необязательные зависимости: деградация graceful ------------------------
-has_pkg <- function(p) requireNamespace(p, quietly = TRUE)
-need    <- c("xml2", "rvest", "httr", "jsonlite")
-missing <- need[!vapply(need, has_pkg, logical(1))]
-if (length(missing) && !OFFLINE) {
-  log_info("Устанавливаю пакеты: ", paste(missing, collapse = ", "))
-  install.packages(missing, repos = "https://cloud.r-project.org", quiet = TRUE)
+suppressPackageStartupMessages({
+  library(httr)
+  library(xml2)
+  library(jsonlite)
+  library(curl)   # curl_escape для URL-кодирования
+})
+
+set.seed(42)  # детерминированный джиттер пауз -> воспроизводимость таймингов
+
+SNAPSHOT_DATE <- Sys.Date()
+SNAPSHOT_TS   <- format(Sys.time(), "%Y%m%d_%H%M%S")
+RAW_DIR       <- PATHS$data_raw
+dir.create(RAW_DIR, recursive = TRUE, showWarnings = FALSE)
+invisible(lapply(c("rss", "gdelt", "cisa", "nasa", "meta"),
+                 function(d) dir.create(file.path(RAW_DIR, d), showWarnings = FALSE)))
+dir.create(PATHS$data_proc, recursive = TRUE, showWarnings = FALSE)
+
+`%||%` <- function(a, b) if (is.null(a)) b else a
+
+# ----------------------------------------------------------------------------
+# 0. КОНФИГУРАЦИЯ ИСТОЧНИКОВ
+# ----------------------------------------------------------------------------
+
+# Браузерный стек заголовков — ключевой фикс против WAF/Akamai/Cloudflare
+BROWSER_HEADERS <- c(
+  "User-Agent" = paste0("Mozilla/5.0 (Windows NT 10.0; Win64; x64) ",
+                        "AppleWebKit/537.36 (KHTML, like Gecko) ",
+                        "Chrome/124.0.0.0 Safari/537.36"),
+  "Accept"     = "application/rss+xml,application/atom+xml,application/xml;q=0.9,*/*;q=0.8",
+  "Accept-Language" = "en-US,en;q=0.9",
+  "Cache-Control"   = "no-cache",
+  "Upgrade-Insecure-Requests" = "1",
+  "Sec-Fetch-Dest"  = "document",
+  "Sec-Fetch-Mode"  = "navigate",
+  "Sec-Fetch-Site"  = "none"
+)
+
+# Расширенный пул RSS-фидов (space + cyber + ICS)
+RSS_FEEDS <- data.frame(
+  source_feed = c(
+    # --- космические ---
+    "SpaceNews", "SpaceflightNow", "SpaceSafetyMagazine",
+    "ParabolicArc", "SpaceWatchGlobal", "ArsTechnica_Space",
+    "NASASpaceflight", "PayloadSpace", "TheRegister_Science",
+    # --- кибербезопасность ---
+    "TheHackersNews", "DarkReading", "SecurityWeek",
+    "KrebsOnSecurity", "TheRecord", "BleepingComputer",
+    # --- OT/ICS ---
+    "ControlGlobal"
+  ),
+  url = c(
+    "https://spacenews.com/feed/",
+    "https://spaceflightnow.com/feed/",
+    "https://www.spacesafetymagazine.com/feed/",
+    "https://parabolicarc.com/feed/",
+    "https://spacewatch.global/feed/",
+    "https://arstechnica.com/space/feed/",
+    "https://www.nasaspaceflight.com/feed/",
+    "https://payloadspace.com/feed/",
+    "https://www.theregister.com/headlines.atom",
+    "https://feeds.feedburner.com/TheHackersNews",
+    "https://www.darkreading.com/rss.xml",
+    "https://www.securityweek.com/feed/",
+    "https://krebsonsecurity.com/feed/",
+    "https://therecord.media/feed",
+    "https://www.bleepingcomputer.com/feed/",
+    "https://www.controlglobal.com/rss"
+  ),
+  category = c(rep("space", 9), rep("cyber", 6), "ics"),
+  stringsAsFactors = FALSE
+)
+
+# GDELT — событийные паттерны (только кандидаты; low reliability)
+SPACE_CYBER_PATTERNS <- c(
+  "satellite hack", "satellite cyberattack", "satellite jamming",
+  "satellite spoofing", "GNSS spoofing", "GPS jamming attack",
+  "ground station cyber", "space cyber incident",
+  "satellite telemetry intercepted", "Starlink jamming",
+  "Viasat hack", "Ka-SAT attack"
+)
+
+# Post-фильтры релевантности для официальных источников
+CISA_KW <- paste("satellite|space|ics|scada|gps|gnss|aerospace|vsat|telecom",
+                 "launch|lockheed|boeing|spacex|northrop|raytheon|l3harris",
+                 "sonik|satsuite|starlink|viasat|oneweb|kuiper", sep = "|")
+NASA_KW <- paste("cyber|hack|breach|vulnerab|intrusion|security incident",
+                 "satellite|iss|artemis|jwst|hubble|orion|launch|mission",
+                 "ground station|telemetry|command", sep = "|")
+
+log_step <- function(step, msg) log_info(sprintf("[%s] %s", step, msg))
+
+# ----------------------------------------------------------------------------
+# 1. АНТИБОТ-ДЕТЕКТОР + УНИВЕРСАЛЬНЫЙ ЗАГРУЗЧИК С FALLBACK-ЦЕПОЧКОЙ
+# ----------------------------------------------------------------------------
+
+# Сигнатуры антибот-страниц: если ответ их содержит — данные НЕ получены.
+# ВАЖНО: проверка выполняется ТОЛЬКО по «шапке» документа (первые 4 КБ) —
+# новостные RSS legitimately содержат фразы вроде "Access Denied" в текстах
+# статей, и проверка по всему телю давала бы ложные срабатывания.
+is_antibot_page <- function(txt) {
+  if (is.null(txt) || !nzchar(txt)) return(TRUE)
+  head_txt <- substr(gsub("[\r\n]", " ", txt), 1, 4000)
+  sigs <- c(
+    "Just a moment",                       # Cloudflare challenge
+    "Checking your browser",               # Cloudflare
+    "^\\s*<HTML.*Access Denied",           # Akamai (только в начале!)
+    "Attention Required! \\| Cloudflare",  # CF block page
+    "Enable JavaScript and cookies",       # JS-challenge
+    "Pardon Our Interruption",             # Fastly
+    "Request unsuccessful.*Incapsula",     # Imperva
+    "<title>403 Forbidden",                # nginx block
+    "Please limit requests to one every"   # GDELT rate-limit text
+  )
+  any(vapply(sigs, function(s) grepl(s, head_txt, ignore.case = TRUE), logical(1)))
 }
-USE_NET <- !OFFLINE && all(vapply(need, has_pkg, logical(1)))
-if (!USE_NET) log_info("Режим без сети: работаем только по локальному кэшу data/raw/")
 
-save_snapshot <- function(dir_, fname, content) {
-  dir.create(dir_, recursive = TRUE, showWarnings = FALSE)
-  writeLines(content, file.path(dir_, fname), useBytes = TRUE)
-  log_info("Сохранён снимок: ", file.path(dir_, fname))
+looks_like_feed <- function(txt) {
+  nzchar(txt) && grepl("<(rss|feed|rdf)[ >]", substr(txt, 1, 4000), ignore.case = TRUE)
+}
+looks_like_json <- function(txt) {
+  nzchar(txt) && grepl("^\\s*[{\\[]", txt)
 }
 
-cutoff_tag <- gsub("-", "", DATA_CUTOFF_DATE)
-
-## ---------------------------------------------------------------------------
-## 1. RSS-ленты (SpaceNews и пр. из каталога со status=active и source_type=news)
-## ---------------------------------------------------------------------------
-## Каталог источников: пропускаем комментарии '#', разделитель '|'
-read_catalog <- function(f) {
-  lines <- readLines(f, warn = FALSE)
-  lines <- lines[!grepl("^\\s*#", lines) & nzchar(trimws(lines))]
-  txt <- paste(lines, collapse = "\n")
-  df <- read.delim(text = txt, sep = "|", stringsAsFactors = FALSE, quote = "")
-  # нормализуем имена (первая строка — заголовок)
-  names(df) <- gsub("^\\s+|\\s+$", "", names(df))
-  df
+# Прямая загрузка через httr с браузерными заголовками
+fetch_direct <- function(url, timeout_s = 25) {
+  tryCatch({
+    res <- httr::GET(url, httr::timeout(timeout_s),
+                     do.call(httr::add_headers, as.list(BROWSER_HEADERS)))
+    if (httr::status_code(res) %in% c(429L, 503L)) return(list(status = httr::status_code(res), txt = NULL))
+    if (httr::http_error(res))                     return(list(status = httr::status_code(res), txt = NULL))
+    txt <- httr::content(res, "text", encoding = "UTF-8")
+    list(status = httr::status_code(res), txt = txt)
+  }, error = function(e) list(status = -1L, txt = NULL))
 }
-catalog <- read_catalog(file.path(PATHS$data_raw, "sources_catalog.psv"))
 
-fetch_rss <- function(url, outdir) {
-  f <- file.path(outdir, sprintf("snapshot_%s.xml", cutoff_tag))
-  if (file.exists(f)) { log_info("Кэш RSS: ", f); return(tryCatch(xml2::read_xml(f), error = function(e) NULL)) }
-  if (!USE_NET) return(NULL)
-  txt <- tryCatch(httr::content(httr::GET(url, httr::timeout(20),
-                                          httr::add_headers("User-Agent" = "Mozilla/5.0 (research pipeline)")),
-                                "text", encoding = "UTF-8"),
-                  error = function(e) NULL)
-  # Валидация: антибот-страницы / пустые ответы не сохраняем как данные
-  if (is.null(txt) || !grepl("<(rss|feed|rdf)", txt, ignore.case = TRUE)) {
-    log_info("RSS: валидный XML не получен (антибот-фильтр или ошибка): ", url); return(NULL)
+# Извлечение «полезного» тела из ответа reader-прокси (r.jina.ai отдаёт
+# markdown с преамбулой "Title:/URL Source:/Markdown Content:")
+strip_reader_preamble <- function(txt) {
+  if (is.null(txt)) return(NULL)
+  m <- regmatches(txt, regexpr("Markdown Content:\\s*", txt))
+  if (length(m) == 1) txt <- sub("^.*Markdown Content:\\s*", "", txt, perl = TRUE)
+  txt
+}
+
+# Fallback-цепочка reader-прокси. r.jina.ai — основной обход Cloudflare/Akamai:
+# его краулер рендерит страницу как браузер и отдаёт контент; для XML/JSON
+# фидов содержимое сохраняется в теле "Markdown Content".
+PROXY_BUILDERS <- list(
+  jina       = function(u) sprintf("https://r.jina.ai/%s", u),
+  jina_text  = function(u) sprintf("https://r.jina.ai/%s", u),  # тот же, но ок="any"
+  allorigins = function(u) sprintf("https://api.allorigins.win/raw?url=%s", curl::curl_escape(u)),
+  codetabs   = function(u) sprintf("https://api.codetabs.com/v1/proxy?quest=%s", curl::curl_escape(u))
+)
+fetch_via_proxy <- function(url, expect = "feed") {
+  for (nm in names(PROXY_BUILDERS)) {
+    if (nm == "jina_text") next
+    r <- fetch_direct(PROXY_BUILDERS[[nm]](url), timeout_s = 60)
+    body <- strip_reader_preamble(r$txt %||% "")
+    if (!is.character(body)) body <- ""
+    good <- switch(expect,
+      feed = looks_like_feed(body) || grepl("### \\[.+\\]\\(https?://", body),
+      json = looks_like_json(body) || grepl('"cveID"|"articles"', body),
+      any  = nzchar(body) && !is_antibot_page(body))
+    if (isTRUE(good)) return(list(txt = body, via = nm))
+    Sys.sleep(runif(1, 1, 2))
   }
-  save_snapshot(outdir, basename(f), txt)
-  xml2::read_xml(f)
+  list(txt = NULL, via = NA_character_)
 }
 
-rss_items <- do.call(rbind, lapply(seq_len(nrow(catalog)), function(i) {
-  s <- catalog[i, ]
-  if (s$status != "active" || s$source_type != "news") return(NULL)
-  x <- fetch_rss(s$url_pattern, file.path(PATHS$data_raw, s$publisher))
-  if (is.null(x)) { log_info("Нет данных RSS: ", s$publisher); return(NULL) }
-  items <- rvest::xml_find_all(x, "//item")
-  d <- data.frame(
-    title    = vapply(items, function(n) tryCatch(rvest::xml_text(rvest::xml_find_first(n, ".//title")),  error = function(e) NA_character_), character(1)),
-    link     = vapply(items, function(n) tryCatch(rvest::xml_text(rvest::xml_find_first(n, ".//link")),   error = function(e) NA_character_), character(1)),
-    pub_date = vapply(items, function(n) tryCatch(rvest::xml_text(rvest::xml_find_first(n, ".//pubDate")), error = function(e) NA_character_), character(1)),
-    desc     = vapply(items, function(n) tryCatch(rvest::xml_text(rvest::xml_find_first(n, ".//description")), error = function(e) NA_character_), character(1)),
+# Парсинг markdown-списка ссылок (ответ r.jina.ai для заблокированных RSS):
+# формат "### [Заголовок](URL)" + опц. строки текста/даты после
+parse_markdown_links <- function(txt, default_date = NA_character_) {
+  lines <- unlist(strsplit(txt, "\n", fixed = TRUE))
+  idx   <- grep("^#{2,4}\\s*\\[(.+?)\\]\\((https?://[^)]+)\\)", lines)
+  if (!length(idx)) return(NULL)
+  mk <- regmatches(lines[idx],
+        regexec("^#{2,4}\\s*\\[(.+?)\\]\\((https?://[^)]+)\\)", lines[idx]))
+  titles <- vapply(mk, function(m) if (length(m) == 3) m[2] else NA_character_, character(1))
+  links  <- vapply(mk, function(m) if (length(m) == 3) m[3] else NA_character_, character(1))
+  # описание = следующая непустая строка после заголовка (до следующего ###)
+  desc <- vapply(seq_along(idx), function(k) {
+    s <- idx[k] + seq_len(min(6, length(lines) - idx[k]))
+    cand <- trimws(lines[s])
+    cand <- cand[nzchar(cand) & !grepl("^#{2,4}\\s*\\[", cand)]
+    substr(gsub("[*_`]", "", paste(head(cand, 2), collapse = " ")), 1, 1500)
+  }, character(1))
+  data.frame(title = trimws(titles), link = links, pub_date = default_date,
+             description = desc, stringsAsFactors = FALSE)
+}
+
+# Универсальный загрузчик: cache -> direct (retry+backoff) -> proxy chain.
+# Возвращает list(txt, via); кэширует валидный сырой снимок на диск.
+smart_fetch <- function(url, cache_dir, cache_name, expect = c("feed", "json", "any")) {
+  expect <- match.arg(expect)
+  fpath  <- file.path(cache_dir, cache_name)
+
+  ## 1. Кэш (гарантия воспроизводимости и offline-рендера)
+  if (file.exists(fpath)) {
+    txt <- paste(readLines(fpath, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+    good_cached <- switch(expect,
+      feed = looks_like_feed(txt),
+      json = looks_like_json(txt),
+      any  = nzchar(txt) && !is_antibot_page(txt))
+    if (isTRUE(good_cached) && !is_antibot_page(txt)) return(list(txt = txt, via = "cache"))
+  }
+  if (OFFLINE) return(list(txt = NULL, via = NA_character_))
+
+  ok <- function(txt) {
+    if (is.null(txt) || is_antibot_page(txt)) return(FALSE)
+    switch(expect,
+           feed = looks_like_feed(txt),
+           json = looks_like_json(txt),
+           any  = looks_like_feed(txt) || looks_like_json(txt) ||
+                  grepl("<html", txt, ignore.case = TRUE))
+  }
+
+  ## 2. Прямые попытки с экспоненциальным backoff (429/503/антибот)
+  for (attempt in seq_len(MAX_RETRIES)) {
+    r <- fetch_direct(url)
+    if (ok(r$txt)) {
+      writeLines(r$txt, fpath, useBytes = TRUE)
+      return(list(txt = r$txt, via = "direct"))
+    }
+    wait <- min(60, round((2 ^ attempt) * runif(1, 0.8, 1.6)))  # джиттер (seed=42)
+    log_step("FETCH", sprintf("попытка %d/%d не удалась (HTTP %s) → пауза %ss: %s",
+                              attempt, MAX_RETRIES, r$status, wait, url))
+    Sys.sleep(wait)
+  }
+
+  ## 3. Fallback-цепочка reader-прокси (r.jina.ai и др.)
+  p <- fetch_via_proxy(url, expect = expect)
+  if (!is.null(p$txt)) {
+    writeLines(p$txt, fpath, useBytes = TRUE)
+    log_step("FETCH", sprintf("получено через fallback-прокси '%s': %s", p$via, url))
+    return(list(txt = p$txt, via = paste0("proxy:", p$via)))
+  }
+  log_step("FETCH", sprintf("ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): %s", url))
+  list(txt = NULL, via = NA_character_)
+}
+
+# ----------------------------------------------------------------------------
+# 2. ПАРСИНГ RSS (собственный парсер xml2 — независим от версии tidyRSS)
+# ----------------------------------------------------------------------------
+
+parse_feed_xml <- function(txt) {
+  x <- tryCatch(xml2::read_xml(txt, encoding = "UTF-8"), error = function(e) NULL)
+  if (is.null(x)) return(NULL)
+  grab <- function(nodes, path) {
+    vapply(nodes, function(n) {
+      f <- xml2::xml_find_first(n, paste0(".", path))
+      if (inherits(f, "xml_missing")) NA_character_ else trimws(xml2::xml_text(f))
+    }, character(1))
+  }
+  items <- xml2::xml_find_all(x, "//item | //entry")   # RSS 2.0 + Atom
+  if (!length(items)) return(NULL)
+  get_first <- function(n, paths) {
+    for (p in paths) {
+      f <- xml2::xml_find_first(n, p)
+      if (!inherits(f, "xml_missing")) return(f)
+    }
+    NULL
+  }
+  out <- data.frame(
+    title = grab(items, "title"),
+    link = vapply(items, function(n) {
+      l <- xml2::xml_find_first(n, "./link")
+      href <- xml2::xml_attr(l, "href")                       # Atom <link href=...>
+      val  <- if (!is.na(href) && nzchar(href)) href else
+              tryCatch(trimws(xml2::xml_text(l)), error = function(e) NA_character_)
+      ifelse(is.na(val) || !nzchar(val), NA_character_, val)
+    }, character(1)),
+    pub_date = vapply(items, function(n) {
+      f <- get_first(n, c("./pubDate", "./published", "./updated", "./dc:date"))
+      if (is.null(f)) NA_character_ else trimws(xml2::xml_text(f))
+    }, character(1)),
+    description = vapply(items, function(n) {
+      f <- get_first(n, c("./description", "./summary", "./content", "./content:encoded"))
+      if (is.null(f)) NA_character_ else
+        substr(gsub("<[^>]+>", " ", trimws(xml2::xml_text(f))), 1, 1500)
+    }, character(1)),
     stringsAsFactors = FALSE
   )
-  transform(d, publisher = s$publisher, source_id = s$source_id)
-}))
-if (!is.null(rss_items) && nrow(rss_items)) {
-  saveRDS(rss_items, file.path(PATHS$data_proc, "rss_items.rds"))
-  log_info("RSS-упоминаний собрано: ", nrow(rss_items))
-} else log_info("RSS-упоминаний: 0 (нет сети или лента не отдаёт данные)")
-
-## ---------------------------------------------------------------------------
-## 2. CISA Advisories — индексная страница (список advisory с датами)
-## ---------------------------------------------------------------------------
-fetch_cisa_index <- function() {
-  outdir <- file.path(PATHS$data_raw, "CISA"); f <- file.path(outdir, sprintf("advisories_%s.html", cutoff_tag))
-  if (file.exists(f)) { log_info("Кэш CISA: ", f); return(rvest::read_html(f)) }
-  if (!USE_NET) return(NULL)
-  res <- tryCatch(httr::GET("https://www.cisa.gov/news-events/cybersecurity-advisories",
-                            httr::timeout(25)), error = function(e) NULL)
-  if (is.null(res) || httr::http_error(res)) return(NULL)
-  save_snapshot(outdir, basename(f), httr::content(res, "text", encoding = "UTF-8"))
-  rvest::read_html(f)
+  out[stats::complete.cases(out$title, out$link), , drop = FALSE]
 }
-page <- fetch_cisa_index()
-if (!is.null(page)) {
-  links <- rvest::html_elements(page, "a[href*='/current-activity']") |>
-    rvest::html_attr("href") |> unique()
-  log_info("CISA: найдено ссылок на материалы: ", length(links))
-  writeLines(links, file.path(PATHS$data_proc, "cisa_advisory_links.txt"))
-} else log_info("CISA: данные недоступны в этом окружении (запись в корпус пропущена)")
 
-## ---------------------------------------------------------------------------
-## 3. GDELT DOC 2.0 API — событийные запросы (только кандидаты; low reliability)
-## ---------------------------------------------------------------------------
-GDELT_QUERIES <- c("satellite jamming", "GPS spoofing", "satellite cyberattack",
-                  "ground station hack", "satellite telemetry intercepted")
-gdelt_fetch <- function(q) {
-  if (!USE_NET) return(NULL)
-  url <- sprintf("https://api.gdeltproject.org/api/v2/doc/doc?query=%s&mode=artlist&maxrecords=50&format=json",
-                 curl::curl_escape(q))
-  res <- tryCatch(httr::GET(url, httr::timeout(25),
-                            httr::add_headers("User-Agent" = "research-pipeline/0.1")),
-                  error = function(e) NULL)
-  if (is.null(res) || httr::http_error(res)) return(NULL)
-  txt <- httr::content(res, "text", encoding = "UTF-8")
-  # GDELT отдаёт rate-limit-текст вместо JSON — детектируем и пропускаем
-  if (!nzchar(txt) || !grepl("^\\s*\\{", txt)) {
-    log_info("GDELT: ответ не-JSON (rate limit) для запроса: ", q); return(NULL)
+collect_rss <- function() {
+  log_step("RSS", sprintf("парсинг %d фидов (browser-headers + retry + proxy-fallback)", nrow(RSS_FEEDS)))
+  rows <- list(); hit <- 0L; blocked <- 0L
+  for (i in seq_len(nrow(RSS_FEEDS))) {
+    fd  <- RSS_FEEDS[i, ]
+    r   <- smart_fetch(fd$url, file.path(RAW_DIR, "rss"),
+                       sprintf("%s.xml", gsub("[^A-Za-z0-9]", "_", fd$source_feed)),
+                       expect = "feed")
+    it  <- NULL
+    if (!is.null(r$txt)) {
+      it <- parse_feed_xml(r$txt)                                  # XML-фид
+      if (is.null(it) || !nrow(it)) it <- parse_markdown_links(r$txt)  # markdown от r.jina.ai
+    }
+    if (is.null(it) || !nrow(it)) { blocked <- blocked + 1L
+      log_step("RSS", sprintf("x  %-22s — нет валидного XML (антибот/ошибка)", fd$source_feed)); next }
+    hit <- hit + 1L
+    log_step("RSS", sprintf("OK %-22s %4d шт. (%s)", fd$source_feed, nrow(it), r$via))
+    rows[[fd$source_feed]] <- transform(it,
+      source = "RSS", source_feed = fd$source_feed, category = fd$category,
+      event_date = NA_character_, snapshot_date = SNAPSHOT_DATE)
+    Sys.sleep(runif(1, 1.5, 4))   # вежливая пауза с джиттером
   }
-  j <- jsonlite::fromJSON(txt, simplifyDataFrame = TRUE)
-  a <- j$articles
-  if (is.null(a) || !nrow(a)) return(NULL)
-  transform(a[, c("url","title","seendate","domain","sourcecountry")], query = q)
+  log_step("RSS", sprintf("успех %d / %d, заблокировано %d", hit, nrow(RSS_FEEDS), blocked))
+  if (length(rows)) do.call(rbind, rows) else NULL
 }
-g <- do.call(rbind, Filter(Negate(is.null), lapply(GDELT_QUERIES, function(q) {
-  Sys.sleep(6)  # вежливый темп: GDELT требует >=1 запрос / 5 сек
-  gdelt_fetch(q)
-})))
-if (!is.null(g) && nrow(g)) {
-  saveRDS(g, file.path(PATHS$data_proc, "gdelt_candidates.rds"))
-  log_info("GDELT кандидатов: ", nrow(g))
-} else log_info("GDELT: кандидатов 0 (сеть недоступна или пустой ответ)")
 
-log_info("Этап сбора завершён. Срез данных: ", DATA_CUTOFF_DATE)
+# ----------------------------------------------------------------------------
+# 3. GDELT DOC 2.0 — строгий rate-limit (>=6 c) + retry + валидация JSON
+# ----------------------------------------------------------------------------
+
+collect_gdelt <- function(max_records = 75L) {
+  log_step("GDELT", sprintf("%d поисковых паттернов, темп >=6 c/запрос", length(SPACE_CYBER_PATTERNS)))
+  base  <- "https://api.gdeltproject.org/api/v2/doc/doc"
+  start <- format(SNAPSHOT_DATE - 365, "%Y%m%dT000000Z")
+  endd  <- format(SNAPSHOT_DATE, "%Y%m%dT235959Z")
+  rows  <- list()
+  for (i in seq_along(SPACE_CYBER_PATTERNS)) {
+    q <- SPACE_CYBER_PATTERNS[i]
+    u <- sprintf("%s?query=%s&mode=ArtList&format=json&maxrecords=%d&startdate=%s&enddate=%s&sort=DateDesc",
+                 base, curl::curl_escape(q), max_records, start, endd)
+    got <- NULL
+    for (attempt in 1:2) {
+      Sys.sleep(if (attempt == 1) max(1, 6 + runif(1, 0, 2)) else 35)  # окно rate-limit GDELT
+      r <- smart_fetch(u, file.path(RAW_DIR, "gdelt"),
+                       sprintf("gdelt_%02d_%s.json", i, gsub("[^A-Za-z0-9]", "_", q)),
+                       expect = "json")
+      if (!is.null(r$txt)) { got <- r$txt; break }
+    }
+    if (is.null(got)) { log_step("GDELT", sprintf("x  '%s' — rate-limit/недоступен", q)); next }
+    j <- tryCatch(jsonlite::fromJSON(got, simplifyDataFrame = TRUE), error = function(e) NULL)
+    a <- j$articles
+    if (is.null(a) || !length(a)) {
+      # r.jina.ai мог отдать markdown со ссылками на статьи вместо JSON
+      md <- parse_markdown_links(got, default_date = NA_character_)
+      if (!is.null(md) && nrow(md)) {
+        a <- data.frame(title = md$title, url = md$link, seendate = NA_character_,
+                        domain = NA_character_, sourcecountry = NA_character_,
+                        stringsAsFactors = FALSE)
+      } else { log_step("GDELT", sprintf("OK '%s' — 0 статей", q)); next }
+    }
+    log_step("GDELT", sprintf("OK '%s' — %d статей", q, nrow(a)))
+    rows[[q]] <- data.frame(
+      title = a$title, url = a$url, pub_date = a$seendate,
+      source = "GDELT", source_feed = q, category = "mixed",
+      description = paste0("domain=", a$domain %||% NA, "; country=", a$sourcecountry %||% NA),
+      event_date = NA_character_, snapshot_date = SNAPSHOT_DATE,
+      stringsAsFactors = FALSE)
+  }
+  if (length(rows)) {
+    d <- do.call(rbind, rows); d[!duplicated(d$url), , drop = FALSE]
+  } else NULL
+}
+
+# ----------------------------------------------------------------------------
+# 4. CISA: RSS advisories + ICS-advisories + KEV catalog (JSON)
+# ----------------------------------------------------------------------------
+
+collect_cisa <- function() {
+  urls <- c(
+    all = "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+    ics = "https://www.cisa.gov/news-events/cybersecurity-advisories/ics.xml",
+    kev = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+  )
+  rows <- list()
+  for (nm in names(urls)) {
+    r <- smart_fetch(urls[[nm]], file.path(RAW_DIR, "cisa"),
+                     sprintf("cisa_%s.%s", nm, if (nm == "kev") "json" else "xml"),
+                     expect = if (nm == "kev") "json" else "feed")
+    if (is.null(r$txt)) { log_step("CISA", sprintf("x  %s — недоступен (антибот на всех каналах)", nm)); next }
+    if (nm == "kev") {
+      j <- tryCatch(jsonlite::fromJSON(r$txt), error = function(e) NULL)
+      v <- j$vulnerabilities
+      if (is.null(v) || !nrow(v)) { log_step("CISA", sprintf("x  %s — JSON не распарсен", nm)); next }
+      sel <- v[grepl(CISA_KW, paste(v$product, v$cveID, v$shortDescription), ignore.case = TRUE), ]
+      log_step("CISA", sprintf("OK KEV: %d/%d уязвимостей прошли space/ICS-фильтр (%s)",
+                               nrow(sel), nrow(v), r$via))
+      if (nrow(sel)) rows[[nm]] <- data.frame(
+        title = sprintf("KEV %s: %s %s", sel$cveID, sel$vendorProject, sel$product),
+        url   = sprintf("https://www.cisa.gov/known-exploited-vulnerabilities-catalog#cve=%s", sel$cveID),
+        pub_date = sel$dateAdded, source = "CISA", source_feed = "KEV", category = "ics",
+        description = substr(sel$shortDescription, 1, 1500),
+        event_date = NA_character_, snapshot_date = SNAPSHOT_DATE, stringsAsFactors = FALSE)
+    } else {
+      it <- parse_feed_xml(r$txt)
+      if (is.null(it) || !nrow(it)) it <- parse_markdown_links(r$txt)  # markdown-ответ r.jina.ai
+      if (is.null(it) || !nrow(it)) { log_step("CISA", sprintf("x  %s — XML не распарсен", nm)); next }
+      sel <- it[grepl(CISA_KW, paste(it$title, it$description), ignore.case = TRUE), ]
+      log_step("CISA", sprintf("OK RSS %s: %d/%d записей релевантны (%s)", nm, nrow(sel), nrow(it), r$via))
+      if (nrow(sel)) rows[[nm]] <- transform(sel,
+        source = "CISA", source_feed = nm, category = "mixed",
+        event_date = NA_character_, snapshot_date = SNAPSHOT_DATE)
+    }
+    Sys.sleep(runif(1, 2, 5))
+  }
+  if (length(rows)) { d <- do.call(rbind, rows); d[!duplicated(d$url), , drop = FALSE] } else NULL
+}
+
+# ----------------------------------------------------------------------------
+# 5. NASA / ESA RSS
+# ----------------------------------------------------------------------------
+
+collect_nasa <- function() {
+  feeds <- c(
+    NASA_releases = "https://www.nasa.gov/news-release/feed/",
+    NASA_safety   = "https://blogs.nasa.gov/safety/feed/",
+    NASA_station  = "https://blogs.nasa.gov/spacestation/feed/",
+    ESA_news      = "https://www.esa.int/rssfeed/Our_Activities/Space_News"
+  )
+  rows <- list()
+  for (nm in names(feeds)) {
+    r <- smart_fetch(feeds[[nm]], file.path(RAW_DIR, "nasa"),
+                     sprintf("%s.xml", nm), expect = "feed")
+    it <- NULL
+    if (!is.null(r$txt)) {
+      it <- parse_feed_xml(r$txt)
+      if (is.null(it) || !nrow(it)) it <- parse_markdown_links(r$txt)
+    }
+    if (is.null(it) || !nrow(it)) { log_step("NASA", sprintf("x  %s — нет данных", nm)); next }
+    sel <- it[grepl(NASA_KW, paste(it$title, it$description), ignore.case = TRUE), ]
+    log_step("NASA", sprintf("OK %s: %d всего, %d релевантны (%s)", nm, nrow(it), nrow(sel), r$via))
+    if (nrow(sel)) rows[[nm]] <- transform(sel,
+      source = if (grepl("ESA", nm)) "ESA" else "NASA", source_feed = nm,
+      category = "space", event_date = NA_character_, snapshot_date = SNAPSHOT_DATE)
+    Sys.sleep(runif(1, 1.5, 3.5))
+  }
+  if (length(rows)) do.call(rbind, rows) else NULL
+}
+
+# ----------------------------------------------------------------------------
+# 6. ГЛАВНЫЙ ПАЙПЛАЙН
+# ----------------------------------------------------------------------------
+
+main <- function() {
+  log_step("PIPELINE", sprintf("срез %s; режим: %s; retries=%d",
+                               SNAPSHOT_DATE, if (OFFLINE) "offline (кэш)" else "online", MAX_RETRIES))
+
+  parts <- Filter(Negate(is.null), list(
+    rss   = collect_rss(),
+    gdelt = collect_gdelt(),
+    cisa  = collect_cisa(),
+    nasa  = collect_nasa()
+  ))
+  schema_cols <- c("source", "source_feed", "category", "title", "url",
+                   "pub_date", "event_date", "description", "snapshot_date")
+  if (!length(parts)) {
+    log_step("PIPELINE", "НЕТ НИ ОДНОГО ИСТОЧНИКА — сохранён пустой корпус")
+    corpus <- data.frame(matrix(character(0), ncol = length(schema_cols)))
+    names(corpus) <- schema_cols
+    corpus$snapshot_date <- as.Date(character(0))
+  } else {
+    corpus <- do.call(rbind, c(lapply(parts, function(d) d[, schema_cols, drop = FALSE]),
+                               make.row.names = FALSE, stringsAsFactors = FALSE))
+    rownames(corpus) <- NULL
+  }
+
+  saveRDS(corpus, file.path(PATHS$data_proc, "corpus_raw.rds"))
+  write.csv(corpus, file.path(PATHS$data_proc,
+            sprintf("corpus_raw_%s.csv", format(SNAPSHOT_DATE, "%Y%m%d"))),
+            row.names = FALSE, fileEncoding = "UTF-8")
+
+  # Метаданные среза (воспроизводимость: seed, версии, исходы по источникам)
+  meta <- list(
+    snapshot_date = as.character(SNAPSHOT_DATE),
+    run_ts        = SNAPSHOT_TS,
+    seed          = 42,
+    taxonomy_ver  = TAXONOMY_VERSION,
+    n_rows        = nrow(corpus),
+    by_source     = as.list(table(corpus$source)),
+    raw_cache_dir = RAW_DIR
+  )
+  write(jsonlite::toJSON(meta, auto_unbox = TRUE, pretty = TRUE),
+        file.path(RAW_DIR, "meta", sprintf("snapshot_meta_%s.json", SNAPSHOT_TS)))
+
+  cat("\n===== СВОДКА СБОРА =====\n")
+  print(table(corpus$source, corpus$category))
+  log_step("PIPELINE", sprintf("ГОТОВО: %d упоминаний -> data/processed/corpus_raw.rds", nrow(corpus)))
+  invisible(corpus)
+}
+
+corpus <- main()

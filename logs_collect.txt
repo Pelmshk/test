@@ -1,0 +1,45 @@
+nohup: ignoring input
+[2026-10-24 07:58:41] [PIPELINE] срез 2026-10-24; режим: online; retries=1
+[2026-10-24 07:58:41] [RSS] парсинг 16 фидов (browser-headers + retry + proxy-fallback)
+[2026-10-24 07:58:41] [FETCH] попытка 1/1 не удалась (HTTP 403) → пауза 3s: https://spacenews.com/feed/
+[2026-10-24 07:58:44] [FETCH] получено через fallback-прокси 'jina': https://spacenews.com/feed/
+[2026-10-24 07:58:44] [RSS] OK SpaceNews                12 шт. (proxy:jina)
+[2026-10-24 07:58:48] [FETCH] попытка 1/1 не удалась (HTTP 403) → пауза 2s: https://spaceflightnow.com/feed/
+[2026-10-24 07:58:50] [FETCH] получено через fallback-прокси 'jina': https://spaceflightnow.com/feed/
+[2026-10-24 07:58:50] [RSS] OK SpaceflightNow           10 шт. (proxy:jina)
+[2026-10-24 07:58:54] [RSS] x  SpaceSafetyMagazine    — нет валидного XML (антибот/ошибка)
+[2026-10-24 07:58:55] [FETCH] попытка 1/1 не удалась (HTTP 404) → пауза 3s: https://parabolicarc.com/feed/
+[2026-10-24 07:59:42] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://parabolicarc.com/feed/
+[2026-10-24 07:59:42] [RSS] x  ParabolicArc           — нет валидного XML (антибот/ошибка)
+[2026-10-24 07:59:42] [RSS] x  SpaceWatchGlobal       — нет валидного XML (антибот/ошибка)
+[2026-10-24 07:59:42] [RSS] x  ArsTechnica_Space      — нет валидного XML (антибот/ошибка)
+[2026-10-24 07:59:42] [FETCH] попытка 1/1 не удалась (HTTP 403) → пауза 3s: https://www.nasaspaceflight.com/feed/
+[2026-10-24 07:59:46] [FETCH] получено через fallback-прокси 'jina': https://www.nasaspaceflight.com/feed/
+[2026-10-24 07:59:46] [RSS] OK NASASpaceflight          10 шт. (proxy:jina)
+[2026-10-24 07:59:49] [RSS] x  PayloadSpace           — нет валидного XML (антибот/ошибка)
+[2026-10-24 07:59:50] [FETCH] попытка 1/1 не удалась (HTTP 200) → пауза 2s: https://www.theregister.com/headlines.atom
+[2026-10-24 07:59:52] [FETCH] получено через fallback-прокси 'jina': https://www.theregister.com/headlines.atom
+[2026-10-24 07:59:52] [RSS] OK TheRegister_Science      50 шт. (proxy:jina)
+[2026-10-24 07:59:55] [RSS] x  TheHackersNews         — нет валидного XML (антибот/ошибка)
+[2026-10-24 07:59:55] [RSS] x  DarkReading            — нет валидного XML (антибот/ошибка)
+[2026-10-24 07:59:55] [FETCH] попытка 1/1 не удалась (HTTP 403) → пауза 3s: https://www.securityweek.com/feed/
+[2026-10-24 07:59:59] [FETCH] получено через fallback-прокси 'jina': https://www.securityweek.com/feed/
+[2026-10-24 07:59:59] [RSS] OK SecurityWeek             10 шт. (proxy:jina)
+[2026-10-24 08:00:01] [RSS] x  KrebsOnSecurity        — нет валидного XML (антибот/ошибка)
+[2026-10-24 08:00:01] [RSS] x  TheRecord              — нет валидного XML (антибот/ошибка)
+[2026-10-24 08:00:01] [FETCH] попытка 1/1 не удалась (HTTP 403) → пауза 2s: https://www.bleepingcomputer.com/feed/
+[2026-10-24 08:00:03] [FETCH] получено через fallback-прокси 'jina': https://www.bleepingcomputer.com/feed/
+[2026-10-24 08:00:03] [RSS] OK BleepingComputer         15 шт. (proxy:jina)
+[2026-10-24 08:00:07] [FETCH] попытка 1/1 не удалась (HTTP 403) → пауза 3s: https://www.controlglobal.com/rss
+[2026-10-24 08:00:55] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://www.controlglobal.com/rss
+[2026-10-24 08:00:55] [RSS] x  ControlGlobal          — нет валидного XML (антибот/ошибка)
+[2026-10-24 08:00:55] [RSS] успех 6 / 16, заблокировано 10
+[2026-10-24 08:00:55] [GDELT] 12 поисковых паттернов, темп >=6 c/запрос
+[2026-10-24 08:01:13] [FETCH] попытка 1/1 не удалась (HTTP -1) → пауза 2s: https://api.gdeltproject.org/api/v2/doc/doc?query=satellite%20hack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:02:17] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://api.gdeltproject.org/api/v2/doc/doc?query=satellite%20hack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:03:02] [FETCH] попытка 1/1 не удалась (HTTP -1) → пауза 2s: https://api.gdeltproject.org/api/v2/doc/doc?query=satellite%20hack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:03:54] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://api.gdeltproject.org/api/v2/doc/doc?query=satellite%20hack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:03:54] [GDELT] x  'satellite hack' — rate-limit/недоступен
+[2026-10-24 08:04:11] [FETCH] попытка 1/1 не удалась (HTTP -1) → пауза 3s: https://api.gdeltproject.org/api/v2/doc/doc?query=satellite%20cyberattack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:05:19] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://api.gdeltproject.org/api/v2/doc/doc?query=satellite%20cyberattack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:06:04] [FETCH] попытка 1/1 не удалась (HTTP -1) → пауза 2s: https://api.gdeltproject.org/api/v2/doc/doc?query=satellite%20cyberattack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc

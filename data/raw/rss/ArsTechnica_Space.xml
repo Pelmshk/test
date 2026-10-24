@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:media="http://search.yahoo.com/mrss/" >
+    <channel>
+        <title>Space - Ars Technica</title>
+        <atom:link href="https://arstechnica.com/space/feed/" rel="self" type="application/rss+xml" />
+        <link>https://arstechnica.com</link>
+        <description>Serving the Technologist since 1998. News, reviews, and analysis.</description>
+        <lastBuildDate>Fri, 23 Oct 2026 22:59:54 +0000</lastBuildDate>
+        <language>en-US</language>
+        <sy:updatePeriod>
+            hourly        </sy:updatePeriod>
+        <sy:updateFrequency>
+            1        </sy:updateFrequency>
+        
+<image>
+	<url>https://cdn.arstechnica.net/wp-content/uploads/2016/10/cropped-ars-logo-512_480-60x60.png</url>
+	<title>Space - Ars Technica</title>
+	<link>https://arstechnica.com</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+            <item>
+                <title>NASA updates lander plans for Moon landings, finally solves long-festering Orion issue</title>
+                <link>https://arstechnica.com/space/2026/10/nasa-updates-lander-plans-for-moon-landings-finally-solves-long-festering-orion-issue/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/nasa-updates-lander-plans-for-moon-landings-finally-solves-long-festering-orion-issue/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Eric Berger]]>
+                </dc:creator>
+                <pubDate>Fri, 23 Oct 2026 22:48:25 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+		<category><![CDATA[blue moon]]></category>
+		<category><![CDATA[NASA]]></category>
+		<category><![CDATA[orion]]></category>
+		<category><![CDATA[space]]></category>
+		<category><![CDATA[starship]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/nasa-updates-lander-plans-for-moon-landings-finally-solves-long-festering-orion-issue/</guid>
+
+                                    <description>
+                        <![CDATA["We have the mandate, we have the resources, and the support from our stakeholders."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>During a lengthy news conference on Friday, NASA provided <a href="https://www.youtube.com/live/pAKqJxuxDgk?si=wE3U86iNdgh-6ti6">a detailed overview</a> of how it plans to return astronauts to the lunar surface as soon as 2028 as part of its Artemis Program.</p>
+<p>Although much of the information behind these plans has been previously reported at Ars Technica and elsewhere, this marked the first time NASA has laid them out in detail and acknowledged some substantial changes in the architecture.</p>
+<p>Most notably, for SpaceX's Starship vehicle, the revised plan calls for the Orion spacecraft to dock with the Starship lunar lander in high-Earth orbit before transiting to the Moon. And for Blue Origin, the mission architecture includes four launches of the New Glenn rocket, but no spacecraft-to-spacecraft refuelings. Additionally, the Blue Origin plans allows for the possibility of its Blue Moon lander rendezvousing with Orion in low-Lunar orbit.</p><p><a href="https://arstechnica.com/space/2026/10/nasa-updates-lander-plans-for-moon-landings-finally-solves-long-festering-orion-issue/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/nasa-updates-lander-plans-for-moon-landings-finally-solves-long-festering-orion-issue/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>57</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/centaur-1002x648.jpg" type="image/jpeg" medium="image" width="1002" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/centaur-500x500.jpg" width="500" height="500" />
+<media:credit>NASA</media:credit><media:text>NASA is working to develop and extended Centaur V upper stage to put Orion into low-Lunar orbit.</media:text></media:content>
+            </item>
+                    <item>
+                <title>Inside the Pentagon, the pressure is on to find a home for a new spaceport</title>
+                <link>https://arstechnica.com/space/2026/10/senior-commander-says-space-force-needs-new-spaceport-by-2030/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/senior-commander-says-space-force-needs-new-spaceport-by-2030/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Stephen Clark]]>
+                </dc:creator>
+                <pubDate>Fri, 23 Oct 2026 19:33:58 +0000</pubDate>
+                		<category><![CDATA[Science]]></category>
+		<category><![CDATA[Space]]></category>
+		<category><![CDATA[launch]]></category>
+		<category><![CDATA[military space]]></category>
+		<category><![CDATA[space systems command]]></category>
+		<category><![CDATA[US Space Force]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/senior-commander-says-space-force-needs-new-spaceport-by-2030/</guid>
+
+                                    <description>
+                        <![CDATA[Space Force considering options: public-private, federal installation, state land.]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Leaders in the US Space Force would like to have a new spaceport up and running in four years, adding a third heavy-lift launch site to relieve pressure from bases in Florida and California that have shot rockets into orbit for nearly 70 years.</p>
+<p>The obvious problem with that ambition is 2030 is four years away, and Pentagon officials have not determined where the new spaceport should go or how to acquire land for it.</p>
+<p>Air Force Secretary Troy Meink first mentioned the service's search for a third launch base in May. A congressionally mandated study of the Space Force's launch infrastructure identified the need for "another site that's capable of heavy and super heavy launch capability," Meink said in a House Armed Services Committee hearing.</p><p><a href="https://arstechnica.com/space/2026/10/senior-commander-says-space-force-needs-new-spaceport-by-2030/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/senior-commander-says-space-force-needs-new-spaceport-by-2030/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>38</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/gallery-gallery_ng-2-ascent-2-1152x648.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/gallery-gallery_ng-2-ascent-2-500x500.jpg" width="500" height="500" />
+<media:credit>Blue Origin</media:credit><media:text>Blue Origin's second New Glenn rocket lifts off from Cape Canaveral Space Force Station on November 13, 2025.</media:text></media:content>
+            </item>
+                    <item>
+                <title>Rocket Report: SpaceX says no thanks to military launches; Spanish rocket nearly ready</title>
+                <link>https://arstechnica.com/space/2026/10/rocket-report-spacex-says-no-thanks-to-military-launches-spanish-rocket-nearly-ready/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/rocket-report-spacex-says-no-thanks-to-military-launches-spanish-rocket-nearly-ready/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Eric Berger]]>
+                </dc:creator>
+                <pubDate>Fri, 23 Oct 2026 11:00:57 +0000</pubDate>
+                		<category><![CDATA[Features]]></category>
+		<category><![CDATA[Space]]></category>
+		<category><![CDATA[NASA]]></category>
+		<category><![CDATA[rocket report]]></category>
+		<category><![CDATA[space]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/rocket-report-spacex-says-no-thanks-to-military-launches-spanish-rocket-nearly-ready/</guid>
+
+                                    <description>
+                        <![CDATA["We believe Canada should be able to reach orbit on its own terms."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Welcome to Edition 9.16 of the Rocket Report! Lots of SpaceX-related news this week including a couple of Thursday shockers. In one story, the company told the US Space Force thanks, but no thanks after being offered three military launch contracts. Then, on the civil space side of things, SpaceX's Starship may required up to 22 refuelings to support a lunar landing, a NASA safety panel said.</p>
+<p>As always, we <a href="https://arstechnica.wufoo.com/forms/launch-stories/">welcome reader submissions</a>, and if you don't want to miss an issue, please subscribe using the box below (the form will not appear on AMP-enabled versions of the site). Each report will include information on small-, medium-, and heavy-lift rockets as well as a quick look ahead at the next three launches on the calendar.</p>
+<figure class="ars-img-shortcode id-1314289 align-center">
+    <div>
+                        <img decoding="async" width="560" height="81" src="https://cdn.arstechnica.net/wp-content/uploads/2018/05/smalll.png" class="center full" alt="" srcset="https://cdn.arstechnica.net/wp-content/uploads/2018/05/smalll.png 560w, https://cdn.arstechnica.net/wp-content/uploads/2018/05/smalll-300x43.png 300w" sizes="(max-width: 560px) 100vw, 560px">
+                  </div>
+      </figure>
+
+<p><strong>Miura 5 getting closer to launch</strong>. PLD Space says its Miura 5 rocket, due to undertake its inaugural launch next year, is nearing final integration, <a href="https://aviationweek.com/space/launch-vehicles-propulsion/pld-space-miura-5-inaugural-launcher-nears-final-integration">Aviation Week reports</a>. The rocket is one of three Miura 5s the company has already manufactured, with the other two designed to qualify key system elements, CEO Raúl Torres said in an October 19 program update. PLD Space now targets a first flight of the small-lift vehicle before mid-2027.</p><p><a href="https://arstechnica.com/space/2026/10/rocket-report-spacex-says-no-thanks-to-military-launches-spanish-rocket-nearly-ready/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/rocket-report-spacex-says-no-thanks-to-military-launches-spanish-rocket-nearly-ready/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>102</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/reaction-dynamics-1152x648.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/reaction-dynamics-500x500.jpg" width="500" height="500" />
+<media:credit>Reaction Dynamics</media:credit><media:text>An artist’s rendering of Reaction Dynamics’ Aurora, left, and the larger Borealis rocket.</media:text></media:content>
+            </item>
+                    <item>
+                <title>Latest estimate for Starship launches required to support a Moon landing? 22.</title>
+                <link>https://arstechnica.com/space/2026/10/latest-estimate-for-starship-launches-required-to-support-a-moon-landing-22/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/latest-estimate-for-starship-launches-required-to-support-a-moon-landing-22/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Eric Berger]]>
+                </dc:creator>
+                <pubDate>Thu, 22 Oct 2026 21:52:31 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+		<category><![CDATA[artemis]]></category>
+		<category><![CDATA[space]]></category>
+		<category><![CDATA[starship]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/latest-estimate-for-starship-launches-required-to-support-a-moon-landing-22/</guid>
+
+                                    <description>
+                        <![CDATA["We need to keep our eyes on numerous required fuelings for the lander."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>NASA does not have, nor want, nuclear weapons. But when it comes to a particular metric that is part of the Artemis Program to land people on the Moon, NASA guards a particular number like it is trying to prevent outsiders from cracking nuclear codes.</p>
+<p>I am speaking of the number of Starship launches required to fuel a Starship-based lunar lander in low-Earth orbit such that it can fly out to the Moon, land there, and return to lunar orbit.</p>
+<p>This number has been a moving target over the years. The general response from NASA has typically been, 'We don't know for sure, so we're not going to say.' In 2023, for example, the then-director of NASA's Human Landing System, Lisa Watson-Morgan, <a href="https://arstechnica.com/space/2023/11/what-nasa-wants-to-see-from-spacexs-second-starship-test-flight/">told Ars</a>, "We have a general idea, but I’m reluctant to say exactly what that is."</p><p><a href="https://arstechnica.com/space/2026/10/latest-estimate-for-starship-launches-required-to-support-a-moon-landing-22/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/latest-estimate-for-starship-launches-required-to-support-a-moon-landing-22/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>174</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/09/HS7_82eXsAAa-Hx-1152x648.jpeg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/09/HS7_82eXsAAa-Hx-500x500.jpeg" width="500" height="500" />
+<media:credit>SpaceX</media:credit><media:text>SpaceX has stacked the Starship vehicle in advance of Flight 14.</media:text></media:content>
+            </item>
+                    <item>
+                <title>US official: Russia&#039;s stalker satellite sure looks like an orbital weapon</title>
+                <link>https://arstechnica.com/space/2026/10/russia-claims-its-stalker-satellite-is-purely-peaceful-in-character/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/russia-claims-its-stalker-satellite-is-purely-peaceful-in-character/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Stephen Clark]]>
+                </dc:creator>
+                <pubDate>Thu, 22 Oct 2026 18:29:39 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+		<category><![CDATA[iceye]]></category>
+		<category><![CDATA[kosmos 2612]]></category>
+		<category><![CDATA[russia space program]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/russia-claims-its-stalker-satellite-is-purely-peaceful-in-character/</guid>
+
+                                    <description>
+                        <![CDATA[The Russian official who called commercial satellites "legitimate targets" now says concerns are "unfounded."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Four years ago, a senior official in Russia's foreign ministry painted a bullseye on commercial satellite networks that assist Ukraine in its fight against invading Russian military forces.</p>
+<p>On Wednesday, several days after a Russian military spacecraft moved within striking distance of one of those commercial satellites, the same Russian diplomat assured the world there's no reason to worry.</p>
+<p>There's a sharp incongruity in those statements from <span class="s4">Konstantin Vorontsov, deputy head of Russia's delegation to the United Nations. </span><span class="s4">Vorontsov's comments Wednesday in the UN General Assembly's First Committee came moments after a US official called attention to <a href="https://arstechnica.com/space/2026/10/russian-spacecraft-maneuvers-in-extreme-proximity-to-satellite-used-by-ukraine/">recent maneuvers by Kosmos 2612</a>, a Russian military craft that approached a US-registered commercial satellite some 340 miles (550 kilometers) above Earth.<b></b></span></p><p><a href="https://arstechnica.com/space/2026/10/russia-claims-its-stalker-satellite-is-purely-peaceful-in-character/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/russia-claims-its-stalker-satellite-is-purely-peaceful-in-character/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>35</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/vorontsov-1152x648.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/vorontsov-500x500.jpg" width="500" height="500" />
+<media:credit>UN General Assembly</media:credit><media:text>Konstantin Vorontsov, deputy head of the Russian delegation to the United Nations, speaks at the General Assembly's First Committee on Wednesday.</media:text></media:content>
+            </item>
+                    <item>
+                <title>SpaceX to attempt Starship catch on next flight, with eye on rapid cadence increase</title>
+                <link>https://arstechnica.com/space/2026/10/spacex-will-attempt-to-reach-weekly-starship-launches-by-early-2027/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/spacex-will-attempt-to-reach-weekly-starship-launches-by-early-2027/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Eric Berger]]>
+                </dc:creator>
+                <pubDate>Wed, 21 Oct 2026 16:46:19 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+		<category><![CDATA[space]]></category>
+		<category><![CDATA[spacex]]></category>
+		<category><![CDATA[starlink]]></category>
+		<category><![CDATA[starship]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/spacex-will-attempt-to-reach-weekly-starship-launches-by-early-2027/</guid>
+
+                                    <description>
+                        <![CDATA["We have had significant constructive engagement with the FAA."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>In its current iteration, SpaceX is largely a data company seeking to provide enormous amounts of compute for artificial intelligence. During an earnings call on Tuesday afternoon, company officials spent much of their time discussing ambitious plans to roll out up to 10 GW of compute in 2027—on the ground.</p>
+<p>Gone are the days of aspirational talk about sending humans to Mars and settling the red planet. Now it is almost all about artificial intelligence and the data needed to support its expansion. However, the company's long-term ambitions to provide data services from space, initially with the Starlink Internet constellation and eventually through the "Starmind" data center constellation, still rely on an actual rocket.</p>
+<p>That would be the Starship vehicle, and during the earnings call, SpaceX founder Elon Musk and the company's president and chief operating officer, Gwynne Shotwell, provided new performance targets for the vehicle.</p><p><a href="https://arstechnica.com/space/2026/10/spacex-will-attempt-to-reach-weekly-starship-launches-by-early-2027/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/spacex-will-attempt-to-reach-weekly-starship-launches-by-early-2027/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>151</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/09/HTU8ja-XgAE6GwQ-1152x648.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/09/HTU8ja-XgAE6GwQ-500x500.jpg" width="500" height="500" />
+<media:credit>SpaceX</media:credit><media:text>SpaceX's 14th Starship test flight began with a Monday morning liftoff from Starbase, Texas. The city of South Padre Island is visible in the background.</media:text></media:content>
+            </item>
+                    <item>
+                <title>Merging SpaceX and Tesla would be a &quot;good idea,&quot; Musk says</title>
+                <link>https://arstechnica.com/space/2026/10/spacex-and-tesla-into-a-single-company-has-a-lot-of-merit-musk-says/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/spacex-and-tesla-into-a-single-company-has-a-lot-of-merit-musk-says/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Eric Berger]]>
+                </dc:creator>
+                <pubDate>Tue, 20 Oct 2026 22:04:54 +0000</pubDate>
+                		<category><![CDATA[Cars]]></category>
+		<category><![CDATA[Space]]></category>
+		<category><![CDATA[Elon Musk]]></category>
+		<category><![CDATA[merger]]></category>
+		<category><![CDATA[space]]></category>
+		<category><![CDATA[spacex]]></category>
+		<category><![CDATA[Tesla]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/spacex-and-tesla-into-a-single-company-has-a-lot-of-merit-musk-says/</guid>
+
+                                    <description>
+                        <![CDATA["I do think there's a lot of merit to combining the companies."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Elon Musk said Tuesday that he would like to see the consolidation of his business empire by formally merging his two largest companies, SpaceX and Tesla.</p>
+<p>"Do I think it would be a good idea? Yes," Musk said of a potential merger. He was speaking during a question-and-answer period as part of SpaceX's third-quarter earnings call. Musk said, ultimately, it not his decision. "But at the end of the day the shareholders have to be supportive of this."</p>
+<p>Musk's talk of a merger comes after a busy year in which SpaceX already acquired Musk's artificial intelligence firm, xAI, in February. In June, SpaceX went public with the largest initial public offering on record.</p><p><a href="https://arstechnica.com/space/2026/10/spacex-and-tesla-into-a-single-company-has-a-lot-of-merit-musk-says/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/spacex-and-tesla-into-a-single-company-has-a-lot-of-merit-musk-says/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>240</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/tesla-in-space-1152x648.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/tesla-in-space-500x500.jpg" width="500" height="500" />
+<media:credit>SpaceX</media:credit><media:text>Eight years after a Falcon Heavy launched a Tesla Roadster into space, SpaceX and Tesla may merge.</media:text></media:content>
+            </item>
+                    <item>
+                <title>Does anyone actually want to win the medium-lift race in the United States?</title>
+                <link>https://arstechnica.com/space/2026/10/does-anyone-actually-want-to-win-the-medium-lift-race-in-the-united-states/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/does-anyone-actually-want-to-win-the-medium-lift-race-in-the-united-states/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Eric Berger]]>
+                </dc:creator>
+                <pubDate>Tue, 20 Oct 2026 19:13:31 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/does-anyone-actually-want-to-win-the-medium-lift-race-in-the-united-states/</guid>
+
+                                    <description>
+                        <![CDATA[Ars Technica is here to help with a guide to the medium-lift space race.]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>It has been 13 years since the debut of a new medium-lift rocket in the United States, the Antares vehicle developed by Orbital Sciences Corporation.</p>
+<p>The initial 100-series variant of the Antares rocket was kind of a hot mess. The rocket used old Soviet engines built during the era when Apollo astronauts were landing on the Moon. Decades later, in the 1990s, Aerojet acquired the engines and refurbished them for a rocket that would launch in the 2010s. Predictably, on the fifth launch of an Antares rocket in 2014, it exploded.</p>
+<p>The Antares vehicle is the last of a dying breed of medium-lift rockets—defined as having a lift capacity of 2 to 20 metric tons—in the United States. Nearly a decade and a half later there is a new generation of medium-lift vehicles coming online, and they are starkly different from Antares, which had not just Russian engines but a core stage manufactured in Ukraine.</p><p><a href="https://arstechnica.com/space/2026/10/does-anyone-actually-want-to-win-the-medium-lift-race-in-the-united-states/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/does-anyone-actually-want-to-win-the-medium-lift-race-in-the-united-states/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>64</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/stoke-second-stage-1152x648.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/stoke-second-stage-500x500.jpg" width="500" height="500" />
+<media:credit>Stoke Space</media:credit><media:text>Nova rocket's upper stage, flight article, during a fit test.</media:text></media:content>
+            </item>
+                    <item>
+                <title>Japan launches mission to bring home a piece of the Martian moon Phobos</title>
+                <link>https://arstechnica.com/space/2026/10/japan-launches-mission-to-bring-home-a-piece-of-the-martian-moon-phobos/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/japan-launches-mission-to-bring-home-a-piece-of-the-martian-moon-phobos/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Stephen Clark]]>
+                </dc:creator>
+                <pubDate>Tue, 20 Oct 2026 05:59:56 +0000</pubDate>
+                		<category><![CDATA[Science]]></category>
+		<category><![CDATA[Space]]></category>
+		<category><![CDATA[h3 rocket]]></category>
+		<category><![CDATA[Japan]]></category>
+		<category><![CDATA[JAXA]]></category>
+		<category><![CDATA[Mars]]></category>
+		<category><![CDATA[martian moons exploration]]></category>
+		<category><![CDATA[mmx]]></category>
+		<category><![CDATA[NASA]]></category>
+		<category><![CDATA[Phobos]]></category>
+		<category><![CDATA[planetary science]]></category>
+		<category><![CDATA[solar system]]></category>
+		<category><![CDATA[tanegashima space center]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/japan-launches-mission-to-bring-home-a-piece-of-the-martian-moon-phobos/</guid>
+
+                                    <description>
+                        <![CDATA[The climax for MMX will come in 2029, when the spacecraft will attempt up to two landings on Phobos.]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Japan launched a $578 million mission Monday on a five-year expedition to land on the largest moon of Mars and retrieve samples for return to Earth, a daring international project that could yield new insights into the formation of the Solar System.</p>
+<p>The robotic Martian Moons eXploration mission, known as MMX, lifted off at 3:41 pm EDT Monday (4:41 am Japan Standard Time Tuesday) from Tanegashima Space Center in southern Japan.</p>
+<p>The MMX spacecraft rode into orbit atop a 207-foot-tall (63-meter) H3 rocket, Japan's flagship launch vehicle. The rocket assigned to MMX debuted a new souped-up configuration with four strap-on solid rocket boosters, full-throttle main engines, and an extended payload shroud to accommodate the demands of Japan's heaviest and most ambitious interplanetary mission to date.</p><p><a href="https://arstechnica.com/space/2026/10/japan-launches-mission-to-bring-home-a-piece-of-the-martian-moon-phobos/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/japan-launches-mission-to-bring-home-a-piece-of-the-martian-moon-phobos/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>61</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/52568167027_27ac36afb5_o-1152x648.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/52568167027_27ac36afb5_o-500x500.jpg" width="500" height="500" />
+<media:credit>ESA/DLR/FU Berlin/Andrea Luck</media:credit><media:text>Phobos over Mars, as seen by Europe's Mars Express spacecraft.</media:text></media:content>
+            </item>
+                    <item>
+                <title>Russian spacecraft maneuvers in &quot;extreme proximity&quot; to satellite used by Ukraine</title>
+                <link>https://arstechnica.com/space/2026/10/russian-spacecraft-maneuvers-in-extreme-proximity-to-satellite-used-by-ukraine/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/russian-spacecraft-maneuvers-in-extreme-proximity-to-satellite-used-by-ukraine/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Stephen Clark]]>
+                </dc:creator>
+                <pubDate>Mon, 19 Oct 2026 20:54:17 +0000</pubDate>
+                		<category><![CDATA[Science]]></category>
+		<category><![CDATA[Space]]></category>
+		<category><![CDATA[anti-satellite tests]]></category>
+		<category><![CDATA[iceye]]></category>
+		<category><![CDATA[kosmos 2612]]></category>
+		<category><![CDATA[military space]]></category>
+		<category><![CDATA[remote sensing]]></category>
+		<category><![CDATA[russia]]></category>
+		<category><![CDATA[space warfare]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/russian-spacecraft-maneuvers-in-extreme-proximity-to-satellite-used-by-ukraine/</guid>
+
+                                    <description>
+                        <![CDATA["Kosmos 2612 closed from hundreds of kilometers away to extreme proximity to ICEYE-X36."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>A Russian military satellite maneuvered in "extreme proximity" of a commercial Earth-imaging satellite in recent days in the first known example an unsanctioned rendezvous in low-Earth orbit, according to orbital intelligence company LeoLabs.</p>
+<p>The Russian spacecraft, Kosmos 2612, "conducted a deliberate series of maneuvers toward ICEYE-X36, a US-operated commercial imaging satellite," LeoLabs said. "Kosmos 2612 closed from hundreds of kilometers away to extreme proximity to ICEYE-X36. It then maneuvered around ICEYE-X36, remained nearby for an extended period, and then began moving away."</p>
+<p>US military officials and independent analysts have tracked Kosmos 2612 since its April launch on a Soyuz rocket from a spaceport in northern Russia. Within weeks, it became <a href="https://arstechnica.com/space/2026/05/a-satellite-company-supporting-ukraine-appears-to-be-in-russias-crosshairs/">apparent that at least four of the six satellites</a> from that launch were stalking ICEYE-X36 after they adjusted orbits to line up with the orbit of the ICEYE spacecraft.</p><p><a href="https://arstechnica.com/space/2026/10/russian-spacecraft-maneuvers-in-extreme-proximity-to-satellite-used-by-ukraine/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/russian-spacecraft-maneuvers-in-extreme-proximity-to-satellite-used-by-ukraine/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>97</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/ICEYE_assembling_satellite_06_3x2-1152x648.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/ICEYE_assembling_satellite_06_3x2-500x500.jpg" width="500" height="500" />
+<media:credit>ICEYE</media:credit><media:text>A radar satellite during assembly at ICEYE's factory.</media:text></media:content>
+            </item>
+                    <item>
+                <title>A Chinese rocket deorbited over Minnesota and left this in a farmer&#039;s cornfield</title>
+                <link>https://arstechnica.com/space/2026/10/a-chinese-rocket-deorbited-over-minnesota-and-left-this-in-a-farmers-cornfield/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/a-chinese-rocket-deorbited-over-minnesota-and-left-this-in-a-farmers-cornfield/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Stephen Clark]]>
+                </dc:creator>
+                <pubDate>Mon, 19 Oct 2026 14:35:01 +0000</pubDate>
+                		<category><![CDATA[Science]]></category>
+		<category><![CDATA[Space]]></category>
+		<category><![CDATA[agriculture]]></category>
+		<category><![CDATA[china]]></category>
+		<category><![CDATA[launch]]></category>
+		<category><![CDATA[Minnesota]]></category>
+		<category><![CDATA[rocket]]></category>
+		<category><![CDATA[space debris]]></category>
+		<category><![CDATA[space junk]]></category>
+		<category><![CDATA[Zhuque-2]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/a-chinese-rocket-deorbited-over-minnesota-and-left-this-in-a-farmers-cornfield/</guid>
+
+                                    <description>
+                        <![CDATA[All the evidence points to the debris being part of a Chinese Zhuque-2E rocket.]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>About a month ago, a Chinese rocket took off from a remote spaceport in the Gobi Desert, released 10 satellites into orbit, then reignited its engine and put itself on a trajectory to rain down debris over the American Midwest.</p>
+<p>The rocket's flight on September 15 lasted between 75 and 80 minutes, and it came down without completing a full orbit of the Earth. Social media posts at the time showed streaks of fiery debris falling from the sky, heading north over <a href="https://www.reddit.com/r/Lawrence/comments/1wgum7k/did_anyone_see_the_celestial_fireball_this_morning/">Kansas</a> toward <a href="https://www.facebook.com/share/r/1G6oL5C6mv/">Minnesota</a>. The overnight spectacle was also visible on the western horizon from <a href="https://www.facebook.com/share/v/19rLiwPPmV/">Wisconsin</a>.</p>
+<p>The exact time, location, and direction of the debris allowed experts to connect it to the launch of a Zhuque-2E rocket, a medium-lift vehicle built by a Chinese company called LandSpace. The rocket had launched from Dongfeng, a commercial launch zone co-located with the military-run Jiuquan Satellite Launch Center in northwestern China, less than two hours before.</p><p><a href="https://arstechnica.com/space/2026/10/a-chinese-rocket-deorbited-over-minnesota-and-left-this-in-a-farmers-cornfield/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/a-chinese-rocket-deorbited-over-minnesota-and-left-this-in-a-farmers-cornfield/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>126</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/848413061_1584132123754825_2260017497965151960_n-1152x648-1792421844.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/848413061_1584132123754825_2260017497965151960_n-480x500.jpg" width="480" height="500" />
+<media:credit>Stevens County Sheriff's Office</media:credit><media:text>A farmer discovered this object while combining his cornfield in Scott Township, Minnesota.</media:text></media:content>
+            </item>
+                    <item>
+                <title>Rocket Report: FAA eyes more Starbase traffic; India&#039;s Skyroot snares US customer</title>
+                <link>https://arstechnica.com/space/2026/10/rocket-report-faa-eyes-more-starbase-traffic-indias-skyroot-snares-us-customer/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/rocket-report-faa-eyes-more-starbase-traffic-indias-skyroot-snares-us-customer/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Stephen Clark]]>
+                </dc:creator>
+                <pubDate>Fri, 16 Oct 2026 11:00:53 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+		<category><![CDATA[falcon 9]]></category>
+		<category><![CDATA[launch]]></category>
+		<category><![CDATA[neutron]]></category>
+		<category><![CDATA[reflect orbital]]></category>
+		<category><![CDATA[rocket lab]]></category>
+		<category><![CDATA[rocket report]]></category>
+		<category><![CDATA[skyroot aerospace]]></category>
+		<category><![CDATA[spacex]]></category>
+		<category><![CDATA[starship]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/rocket-report-faa-eyes-more-starbase-traffic-indias-skyroot-snares-us-customer/</guid>
+
+                                    <description>
+                        <![CDATA[The pioneering reusable upper stage for Stoke Space's Nova rocket ships out for testing.]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Welcome to Edition 9.15 of the Rocket Report! The launch I'm most looking forward to in the next few weeks is that of Japan's Martian Moons Exploration (MMX) mission. MMX is one of the marquee space science missions launching this year, and it's set to leave Earth as soon as Monday (US time) aboard a Japanese H3 rocket. The spacecraft will visit Phobos and Deimos, the two asteroid-like moons of Mars, deploying a rover and collecting specimens for return to Earth in 2031. Exploration at its finest.</p>
+<p>As always, we <a href="https://arstechnica.wufoo.com/forms/launch-stories/">welcome reader submissions</a>, and if you don't want to miss an issue, please subscribe using the box below (the form will not appear on AMP-enabled versions of the site). Each report will include information on small-, medium-, and heavy-lift rockets as well as a quick look ahead at the next three launches on the calendar.</p>
+<figure class="ars-img-shortcode id-1314289 align-center">
+    <div>
+                        <img loading="lazy" decoding="async" width="560" height="81" src="https://cdn.arstechnica.net/wp-content/uploads/2018/05/smalll.png" class="center full" alt="" srcset="https://cdn.arstechnica.net/wp-content/uploads/2018/05/smalll.png 560w, https://cdn.arstechnica.net/wp-content/uploads/2018/05/smalll-300x43.png 300w" sizes="auto, (max-width: 560px) 100vw, 560px">
+                  </div>
+      </figure>
+
+<p><strong>Reflect Orbital looks to India for launch capacity</strong>. California-based Reflect Orbital, the startup attempting to offer sunlight on-demand with in-space mirrors, announced the purchase of two launches Wednesday from Indian launcher Skyroot Aerospace, <a href="https://payloadspace.com/reflect-orbital-buys-two-skyroot-aerospace-launches/">Payload Space reports</a>. One of the launches will use Skyroot's Vikram-1 rocket, which became the first privately developed Indian rocket to reach orbit in July. The other will fly on an upgraded rocket called the Vikram-1U.</p><p><a href="https://arstechnica.com/space/2026/10/rocket-report-faa-eyes-more-starbase-traffic-indias-skyroot-snares-us-customer/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/rocket-report-faa-eyes-more-starbase-traffic-indias-skyroot-snares-us-customer/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>140</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/stoke1-1152x648.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/stoke1-500x500.jpg" width="500" height="500" />
+<media:credit>Stoke Space</media:credit><media:text>The upper stage for Stoke Space's Nova rocket at the company's test facility in Moses Lake, Washington.</media:text></media:content>
+            </item>
+                    <item>
+                <title>Blue Origin is going all in on the New Glenn rocket</title>
+                <link>https://arstechnica.com/space/2026/10/blue-origin-is-going-all-in-on-the-new-glenn-rocket/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/blue-origin-is-going-all-in-on-the-new-glenn-rocket/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Eric Berger]]>
+                </dc:creator>
+                <pubDate>Fri, 16 Oct 2026 10:00:54 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+		<category><![CDATA[blue origin]]></category>
+		<category><![CDATA[expansion]]></category>
+		<category><![CDATA[new glenn]]></category>
+		<category><![CDATA[space]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/blue-origin-is-going-all-in-on-the-new-glenn-rocket/</guid>
+
+                                    <description>
+                        <![CDATA[The infrastructure is designed to support multiple flights per week by the end of the decade.]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Blue Origin announced a major expansion of its already considerable Florida launch facilities on Friday morning with the intent of eventually flying more than 100 rockets a year from there.</p>
+<p>The company said it would add two launch pads for the New Glenn rocket, in addition to two already under construction at Cape Canaveral. The company is also investing heavily in a new manufacturing facility that will produce up to 150 upper stages for a larger variant of the New Glenn rocket.</p>
+<p>The company also plans to procure two additional landing ships to catch and return the first stage of the New Glenn rocket (it currently has one, named <em>Jacklyn</em>). Finally, Blue Origin said it would add a new customer integration facility, built in conjunction with the US Space Force, that will feature four payload bays to process multiple missions at the same time.</p><p><a href="https://arstechnica.com/space/2026/10/blue-origin-is-going-all-in-on-the-new-glenn-rocket/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/blue-origin-is-going-all-in-on-the-new-glenn-rocket/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>113</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/Blue-Origin-Upper-Stage-Facility-Still-Render-1152x648.png" type="image/png" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/Blue-Origin-Upper-Stage-Facility-Still-Render-500x500.png" width="500" height="500" />
+<media:credit>Blue Origin</media:credit><media:text>A rendering of Blue Origin's new Upper Stage Facility. </media:text></media:content>
+            </item>
+                    <item>
+                <title>Neutron&#039;s first launch slips again amid trouble with carbon composites</title>
+                <link>https://arstechnica.com/space/2026/10/rocket-lab-announces-another-delay-for-its-medium-lift-neutron-rocket/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/rocket-lab-announces-another-delay-for-its-medium-lift-neutron-rocket/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Stephen Clark]]>
+                </dc:creator>
+                <pubDate>Thu, 15 Oct 2026 16:57:24 +0000</pubDate>
+                		<category><![CDATA[Science]]></category>
+		<category><![CDATA[Space]]></category>
+		<category><![CDATA[neutron rocket]]></category>
+		<category><![CDATA[rocket lab]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/rocket-lab-announces-another-delay-for-its-medium-lift-neutron-rocket/</guid>
+
+                                    <description>
+                        <![CDATA[Rocket Lab announced the Neutron rocket in 2021, aiming for a first flight in 2024.]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Rocket Lab announced Wednesday that its Neutron launch vehicle won't fly until 2027, citing an issue discovered during manufacturing of the rocket's carbon composite structures.</p>
+<p>The announcement was public confirmation of what nearly everyone inside Rocket Lab and the wider space industry already knew. The most recent official update from Rocket Lab in August suggested the company still held hope of delivering the first Neutron rocket to its launch pad at Wallops Island, Virginia, before the end of this year, a schedule that would have almost certainly pushed the first flight into 2027.</p>
+<p>But Rocket Lab's statement Wednesday about Neutron's schedule suggests the company is still struggling with manufacturing the rocket's large booster stage. Neutron's reusable first stage is made of carbon composite structures, which offer low weight, high strength, and corrosion resistance. But carbon composites in aerospace are generally harder to manufacture than metallic structures.</p><p><a href="https://arstechnica.com/space/2026/10/rocket-lab-announces-another-delay-for-its-medium-lift-neutron-rocket/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/rocket-lab-announces-another-delay-for-its-medium-lift-neutron-rocket/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>84</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/53194639182_2982a6d6de_h-1152x648.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/53194639182_2982a6d6de_h-500x500.jpg" width="500" height="500" />
+<media:credit>Rocket Lab</media:credit><media:text>Artist's illustration of the Neutron rocket.</media:text></media:content>
+            </item>
+                    <item>
+                <title>Things are finally looking up for NASA&#039;s first missions to Venus in a generation</title>
+                <link>https://arstechnica.com/space/2026/10/nasas-embattled-venus-missions-are-back-on-track-after-cancellation-threat/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/nasas-embattled-venus-missions-are-back-on-track-after-cancellation-threat/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Stephen Clark]]>
+                </dc:creator>
+                <pubDate>Wed, 14 Oct 2026 20:48:07 +0000</pubDate>
+                		<category><![CDATA[Science]]></category>
+		<category><![CDATA[Space]]></category>
+		<category><![CDATA[DaVinci]]></category>
+		<category><![CDATA[envision]]></category>
+		<category><![CDATA[european space agency]]></category>
+		<category><![CDATA[NASA]]></category>
+		<category><![CDATA[planetary science]]></category>
+		<category><![CDATA[solar system]]></category>
+		<category><![CDATA[Venus]]></category>
+		<category><![CDATA[veritas]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/nasas-embattled-venus-missions-are-back-on-track-after-cancellation-threat/</guid>
+
+                                    <description>
+                        <![CDATA["This is great news for us. We're staffing up. We're accelerating."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Most planetary scientists will tell you the heyday of Venus exploration was more than a generation ago. That is about to change.</p>
+<p>Two NASA missions are on track to launch to Venus in the early 2030s. The first, known as the Deep Atmosphere Venus Investigation of Noble gases, Chemistry, and Imaging (DAVINCI), is now scheduled for launch in December 2030, a year earlier than previously planned. DAVINCI will send a parachute-assisted descent probe through the atmosphere of Venus, returning the first direct images of the planet's surface since 1982. A second mission, Venus Emissivity, Radio science, InSAR, Topography, And Spectroscopy (VERITAS), will follow with a launch in November 2032 to map the Venusian surface by radar from orbit.</p>
+<p>The European Space Agency is building another orbiter, Envision, for launch to Venus in 2032. The Venus armada might get started as soon as next year, when Rocket Lab aims to launch a privately funded probe to search for signs of organic material in the planet's clouds.</p><p><a href="https://arstechnica.com/space/2026/10/nasas-embattled-venus-missions-are-back-on-track-after-cancellation-threat/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/nasas-embattled-venus-missions-are-back-on-track-after-cancellation-threat/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>41</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/davinci-heat-test-3-1152x648-1792007515.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/davinci-heat-test-3-500x500.jpg" width="500" height="500" />
+<media:credit>NASA/Mike Guinto</media:credit><media:text>A test unit for DAVINCI's entry probe is moved into a furnace at Rex Heat Treat in Bedford, Pennsylvania, for thermal testing.</media:text></media:content>
+            </item>
+                    <item>
+                <title>NASA issues long-awaited call to industry for private space stations</title>
+                <link>https://arstechnica.com/space/2026/10/nasa-issues-long-awaited-call-to-industry-for-private-space-stations/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/nasa-issues-long-awaited-call-to-industry-for-private-space-stations/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Eric Berger]]>
+                </dc:creator>
+                <pubDate>Fri, 09 Oct 2026 21:34:09 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+		<category><![CDATA[cld]]></category>
+		<category><![CDATA[NASA]]></category>
+		<category><![CDATA[Private space stations]]></category>
+		<category><![CDATA[space]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/nasa-issues-long-awaited-call-to-industry-for-private-space-stations/</guid>
+
+                                    <description>
+                        <![CDATA["We’ve made it clear that NASA will never give up its presence in low-Earth orbit."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>NASA on Friday released a much-anticipated "request" to the US commercial space industry to develop private space stations that, as early as 2030, will succeed the International Space Station as a place for astronauts to live in low-Earth orbit.</p>
+<p>In a cover letter accompanying the 360-page "request for proposals," NASA stated its plan: "This will ensure NASA has a sustained human presence in LEO for crew members to perform science and exploration." Several private companies that have worked for years on designing and developing such stations have been keen to learn exactly what capabilities NASA is seeking. These new documents finally provide some answers.</p>
+<p>NASA's solicitation <a href="https://sam.gov/workspace/contract/opp/aee4374189ab4118b3ec0dcb00ae8408/view">can be found here</a>. Industry responses are due back to NASA on December 8. NASA said it plans to select "two or more" contractors in this phase of the competition and intends to make a final decision in April.</p><p><a href="https://arstechnica.com/space/2026/10/nasa-issues-long-awaited-call-to-industry-for-private-space-stations/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/nasa-issues-long-awaited-call-to-industry-for-private-space-stations/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>71</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2012/11/323069main_s119e009662.jpg" type="image/jpeg" medium="image">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2012/11/323069main_s119e009662-500x424.jpg" width="500" height="424" />
+<media:credit>NASA</media:credit><media:text>The International Space Station is going to retire soon. What will replace it?</media:text></media:content>
+            </item>
+                    <item>
+                <title>Rocket Report: A rare Falcon 9 scrub; is it just about Vulcan&#039;s time to shine?</title>
+                <link>https://arstechnica.com/space/2026/10/rocket-report-a-rare-falcon-9-scrub-is-it-just-about-vulcans-time-to-shine/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/rocket-report-a-rare-falcon-9-scrub-is-it-just-about-vulcans-time-to-shine/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Eric Berger]]>
+                </dc:creator>
+                <pubDate>Fri, 09 Oct 2026 11:00:57 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+		<category><![CDATA[rocket report]]></category>
+		<category><![CDATA[space]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/rocket-report-a-rare-falcon-9-scrub-is-it-just-about-vulcans-time-to-shine/</guid>
+
+                                    <description>
+                        <![CDATA["I can say we’re weeks away from launching on Vulcan."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Welcome to Edition 9.14 of the Rocket Report! The big news this week, from our perspective, is that United Launch Alliance's Vulcan rocket appears to be close to launching. We've seen a no-earlier-than launch date for the return to flight mission of October 29 (an Amazon Leo flight), and the next rocket up after that, also an Amazon Leo mission, is also planned for this year. Assuming the solid rocket boosters work, Vulcan could be poised for a major breakthrough next year in cadence.</p>
+<p>As always, we <a href="https://arstechnica.wufoo.com/forms/launch-stories/">welcome reader submissions</a>, and if you don't want to miss an issue, please subscribe using the box below (the form will not appear on AMP-enabled versions of the site). Each report will include information on small-, medium-, and heavy-lift rockets as well as a quick look ahead at the next three launches on the calendar.</p>
+<figure class="ars-img-shortcode id-1314289 align-center">
+    <div>
+                        <img loading="lazy" decoding="async" width="560" height="81" src="https://cdn.arstechnica.net/wp-content/uploads/2018/05/smalll.png" class="center full" alt="" srcset="https://cdn.arstechnica.net/wp-content/uploads/2018/05/smalll.png 560w, https://cdn.arstechnica.net/wp-content/uploads/2018/05/smalll-300x43.png 300w" sizes="auto, (max-width: 560px) 100vw, 560px">
+                  </div>
+      </figure>
+
+<p><strong>Nuri rocket notches another success</strong>. South Korea successfully deployed five satellites for its first domestically launched microsatellite constellation during the fifth flight of its homegrown Nuri rocket Wednesday, <a href="https://en.yna.co.kr/view/AEN20261007005453320">Yonhap News Agency reports</a>. In addition to the primary payload of five New-space Earth Observation Satellite Constellation for National Safety microsatellites, nine of the rocket's 10 CubeSat secondary payloads were released as planned, according to the Korea AeroSpace Administration. PERSAT-02, developed by South Korean startup Quaternion, failed to separate from the rocket.</p><p><a href="https://arstechnica.com/space/2026/10/rocket-report-a-rare-falcon-9-scrub-is-it-just-about-vulcans-time-to-shine/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/rocket-report-a-rare-falcon-9-scrub-is-it-just-about-vulcans-time-to-shine/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>136</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/04/55092272338_83965929d0_o-1152x648-1776275319.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/04/55092272338_83965929d0_o-500x500.jpg" width="500" height="500" />
+<media:credit>United Launch Alliance</media:credit><media:text>A United Launch Alliance Vulcan rocket, powered by four solid-fueled boosters, lifts off from Cape Canaveral Space Force Station, Florida.</media:text></media:content>
+            </item>
+                    <item>
+                <title>SpaceX calls for better coordination in orbit after near-misses with Starlink</title>
+                <link>https://arstechnica.com/space/2026/10/spacex-calls-for-better-coordination-in-orbit-after-near-misses-with-starlink/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/spacex-calls-for-better-coordination-in-orbit-after-near-misses-with-starlink/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Stephen Clark]]>
+                </dc:creator>
+                <pubDate>Thu, 08 Oct 2026 21:37:32 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+		<category><![CDATA[space debris]]></category>
+		<category><![CDATA[space traffic management]]></category>
+		<category><![CDATA[spacex]]></category>
+		<category><![CDATA[spacex starlink]]></category>
+		<category><![CDATA[starlink]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/spacex-calls-for-better-coordination-in-orbit-after-near-misses-with-starlink/</guid>
+
+                                    <description>
+                        <![CDATA["These led to conjunctions of tens of meters to hundreds of meters. Way too close to comfort."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Space has plenty of room for more megaconstellations, but only if all operators are willing to share information about where their satellites are and where they're going, a top executive at SpaceX and its AI subsidiary said this week.</p>
+<p>Michael Nicolls, SpaceX's vice president for Starlink and president of Elon Musk's artificial intelligence company, xAI, used a presentation Tuesday at the International Astronautical Congress in Turkey as a clarion call for improved data-sharing among satellite operators.</p>
+<p>SpaceX's Starlink constellation now has more than 11,000 satellites, about two-thirds of all active spacecraft in low-Earth orbit. Radars and telescopes routinely track thousands more pieces of space junk.</p><p><a href="https://arstechnica.com/space/2026/10/spacex-calls-for-better-coordination-in-orbit-after-near-misses-with-starlink/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/spacex-calls-for-better-coordination-in-orbit-after-near-misses-with-starlink/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>142</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/starshipflight14_deploy-1152x648-1791410362.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/starshipflight14_deploy-500x500.jpg" width="500" height="500" />
+<media:credit>SpaceX</media:credit><media:text>The first batch upgraded Starlink V3 satellites deploy from SpaceX's Starship rocket in low-Earth orbit on September 28.</media:text></media:content>
+            </item>
+                    <item>
+                <title>RIP Margaret Hamilton, whose code saved the Apollo 11 Moon landing</title>
+                <link>https://arstechnica.com/science/2026/10/r-i-p-margaret-hamilton-whose-code-saved-the-apollo-11-moon-landing/</link>
+                                    <comments>https://arstechnica.com/science/2026/10/r-i-p-margaret-hamilton-whose-code-saved-the-apollo-11-moon-landing/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Jennifer Ouellette]]>
+                </dc:creator>
+                <pubDate>Thu, 08 Oct 2026 20:15:53 +0000</pubDate>
+                		<category><![CDATA[Science]]></category>
+		<category><![CDATA[Space]]></category>
+		<category><![CDATA[Apollo 11]]></category>
+		<category><![CDATA[Chaos theory]]></category>
+		<category><![CDATA[Margaret Hamilton]]></category>
+		<category><![CDATA[Obituaries]]></category>
+		<category><![CDATA[obituary]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/science/2026/10/r-i-p-margaret-hamilton-whose-code-saved-the-apollo-11-moon-landing/</guid>
+
+                                    <description>
+                        <![CDATA[Hamilton also coined the term "software engineering" and founded two successful software companies.]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>Margaret Hamilton, who coined the term "software engineering" and <a href="https://en.wikipedia.org/wiki/Margaret_Hamilton_(software_engineer)">led the development</a> of onboard flight software for NASA's Apollo program in the 1960s, <a href="https://www.nytimes.com/2026/10/07/obituaries/margaret-hamilton-dead.html">died last week</a> at the age of 90. A recipient of the Presidential Medal of Freedom in 2016, Hamilton was also immortalized as a <a href="https://arstechnica.com/science/2017/10/a-new-lego-set-honors-the-women-of-nasa-and-it-looks-pretty-awesome/">LEGO minifig</a> the following year—part of the "Women of NASA" set that also included astronauts Mae Jemison and Sally Ride.</p>
+<p>“To say Margaret Hamilton was a pioneer—to say she was ahead of her time—would be a dramatic understatement. She was a software engineer at a time when that field was in its infancy, and she not only developed advanced code herself but also led a team in using that nascent technology to develop one of the most complex systems humanity had ever achieved,” <a href="https://news.mit.edu/2026/margaret-hamilton-computing-pioneer-dies-1007">said Olivier de Weck</a>, interim head of the MIT Department of Aeronautics and Astronautics. “The Apollo program still stands as one of our greatest testaments to the power of collaboration, ingenuity, and engineering, and Hamilton was a fundamental contributor to that program’s success.”</p>
+<p>Born in 1936 in Paoli, Indiana, Hamilton graduated from Earlham College in 1958 with a degree in mathematics and a minor in philosophy—the latter a nod to her father (a poet) and grandfather (a headmaster). She married her first husband, James Cox Hamilton, that same year. The plan was for her to work until he finished his law degree, after which he would support her through graduate school to earn a PhD in mathematics.</p><p><a href="https://arstechnica.com/science/2026/10/r-i-p-margaret-hamilton-whose-code-saved-the-apollo-11-moon-landing/">Read full article</a></p>
+<p><a href="https://arstechnica.com/science/2026/10/r-i-p-margaret-hamilton-whose-code-saved-the-apollo-11-moon-landing/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>103</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/hamilton2-1152x648-1791480892.jpg" type="image/jpeg" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/hamilton2-500x500.jpg" width="500" height="500" />
+<media:credit>NASA/Public domain</media:credit></media:content>
+            </item>
+                    <item>
+                <title>Amazon builds 1,000th satellite, will launch space internet service by end of year</title>
+                <link>https://arstechnica.com/space/2026/10/amazon-builds-1000th-satellite-is-weeks-away-from-space-internet-rollout/</link>
+                                    <comments>https://arstechnica.com/space/2026/10/amazon-builds-1000th-satellite-is-weeks-away-from-space-internet-rollout/#comments</comments>
+                
+                <dc:creator>
+                    <![CDATA[Eric Berger]]>
+                </dc:creator>
+                <pubDate>Thu, 08 Oct 2026 15:28:36 +0000</pubDate>
+                		<category><![CDATA[Space]]></category>
+		<category><![CDATA[amazon leo]]></category>
+		<category><![CDATA[leo broadband]]></category>
+		<category><![CDATA[space]]></category>
+		<category><![CDATA[spacex]]></category>
+		<category><![CDATA[starlink]]></category>
+                <guid isPermaLink="true">https://arstechnica.com/space/2026/10/amazon-builds-1000th-satellite-is-weeks-away-from-space-internet-rollout/</guid>
+
+                                    <description>
+                        <![CDATA["If this was easy, everybody else would be doing it."]]>
+                    </description>
+                                                                <content:encoded>
+                            <![CDATA[<p>The world's largest retailer wants to sell you something else—Internet from space.</p>
+<p>Amazon has been developing a constellation of satellites to deliver broadband Internet from low-Earth orbit for the better part of a decade, and the company is just about ready to pull back the curtain. It is entering a market that SpaceX, with its Starlink Internet, has dominated for the last half-decade. Amazon's debut into satellite Internet is being closely watched, not just by some consumers, but by businesses ranging from airlines to shipping companies to governments. Broadband Internet from orbit has proven broadly useful for a lot of purposes, from video games to commerce to warfighting.</p>
+<p>But until now, most people had to buy it from Elon Musk and SpaceX. OneWeb has only offered limited services, leaving Amazon as the only real competitor to deliver high-speed Internet globally. Moreover, at the head of the company's broadband efforts is Rajeev Badyal, who led Starlink during its early years, but whom Musk fired eight years ago for moving too cautiously on Starlink.</p><p><a href="https://arstechnica.com/space/2026/10/amazon-builds-1000th-satellite-is-weeks-away-from-space-internet-rollout/">Read full article</a></p>
+<p><a href="https://arstechnica.com/space/2026/10/amazon-builds-1000th-satellite-is-weeks-away-from-space-internet-rollout/#comments">Comments</a></p>
+]]>
+                        </content:encoded>
+                                    
+                                    <slash:comments>111</slash:comments>
+                
+                
+                <media:content url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/Satellite-1000-1152x648.png" type="image/png" medium="image" width="1152" height="648">
+<media:thumbnail url="https://cdn.arstechnica.net/wp-content/uploads/2026/10/Satellite-1000-500x500.png" width="500" height="500" />
+<media:credit>Amazon Leo</media:credit><media:text>Amazon recently built its 1,000th Leo broadband Internet satellite.</media:text></media:content>
+            </item>
+            </channel>
+</rss>
