@@ -77,3 +77,35 @@ nohup: ignoring input
 [2026-10-24 08:21:50] [FETCH] попытка 1/1 не удалась (HTTP 429) → пауза 2s: https://api.gdeltproject.org/api/v2/doc/doc?query=Starlink%20jamming&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
 [2026-10-24 08:22:50] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://api.gdeltproject.org/api/v2/doc/doc?query=Starlink%20jamming&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
 [2026-10-24 08:23:35] [FETCH] попытка 1/1 не удалась (HTTP 429) → пауза 3s: https://api.gdeltproject.org/api/v2/doc/doc?query=Starlink%20jamming&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:24:35] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://api.gdeltproject.org/api/v2/doc/doc?query=Starlink%20jamming&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:24:35] [GDELT] x  'Starlink jamming' — rate-limit/недоступен
+[2026-10-24 08:24:54] [FETCH] попытка 1/1 не удалась (HTTP 429) → пауза 3s: https://api.gdeltproject.org/api/v2/doc/doc?query=Viasat%20hack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:25:39] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://api.gdeltproject.org/api/v2/doc/doc?query=Viasat%20hack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:26:24] [FETCH] попытка 1/1 не удалась (HTTP -1) → пауза 3s: https://api.gdeltproject.org/api/v2/doc/doc?query=Viasat%20hack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:27:27] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://api.gdeltproject.org/api/v2/doc/doc?query=Viasat%20hack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:27:27] [GDELT] x  'Viasat hack' — rate-limit/недоступен
+[2026-10-24 08:27:45] [FETCH] попытка 1/1 не удалась (HTTP 429) → пауза 3s: https://api.gdeltproject.org/api/v2/doc/doc?query=Ka-SAT%20attack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:28:48] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://api.gdeltproject.org/api/v2/doc/doc?query=Ka-SAT%20attack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:29:33] [FETCH] попытка 1/1 не удалась (HTTP 429) → пауза 2s: https://api.gdeltproject.org/api/v2/doc/doc?query=Ka-SAT%20attack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:30:24] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://api.gdeltproject.org/api/v2/doc/doc?query=Ka-SAT%20attack&mode=ArtList&format=json&maxrecords=75&startdate=20251024T000000Z&enddate=20261024T235959Z&sort=DateDesc
+[2026-10-24 08:30:24] [GDELT] x  'Ka-SAT attack' — rate-limit/недоступен
+[2026-10-24 08:30:24] [FETCH] попытка 1/1 не удалась (HTTP 403) → пауза 3s: https://www.cisa.gov/cybersecurity-advisories/all.xml
+[2026-10-24 08:30:32] [FETCH] получено через fallback-прокси 'jina': https://www.cisa.gov/cybersecurity-advisories/all.xml
+[2026-10-24 08:30:32] [CISA] OK RSS all: 23/30 записей релевантны (proxy:jina)
+[2026-10-24 08:30:36] [FETCH] попытка 1/1 не удалась (HTTP 403) → пауза 2s: https://www.cisa.gov/news-events/cybersecurity-advisories/ics.xml
+[2026-10-24 08:31:38] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://www.cisa.gov/news-events/cybersecurity-advisories/ics.xml
+[2026-10-24 08:31:38] [CISA] x  ics — недоступен (антибот на всех каналах)
+[2026-10-24 08:31:38] [FETCH] попытка 1/1 не удалась (HTTP 403) → пауза 2s: https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+[2026-10-24 08:31:42] [FETCH] получено через fallback-прокси 'jina': https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+[2026-10-24 08:31:42] [CISA] x  kev — JSON не распарсен
+[2026-10-24 08:31:42] [NASA] x  NASA_releases — нет данных
+[2026-10-24 08:31:43] [FETCH] попытка 1/1 не удалась (HTTP 200) → пауза 2s: https://blogs.nasa.gov/safety/feed/
+[2026-10-24 08:32:30] [FETCH] ВСЕ МЕТОДЫ ИСЧЕРПАНЫ (антибот): https://blogs.nasa.gov/safety/feed/
+[2026-10-24 08:32:30] [NASA] x  NASA_safety — нет данных
+[2026-10-24 08:32:30] [NASA] x  NASA_station — нет данных
+[2026-10-24 08:32:30] [NASA] x  ESA_news — нет данных
+Error in `[.data.frame`(d, , schema_cols, drop = FALSE) : 
+  undefined columns selected
+Calls: main -> do.call -> lapply -> FUN -> [ -> [.data.frame
+In addition: There were 50 or more warnings (use warnings() to see the first 50)
+Execution halted

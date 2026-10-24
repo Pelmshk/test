@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet href="/css/rss.xsl" type="text/xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"> 
+<!-- If you're seeing this, you've clicked on a link for ESA's RSS feeds. 
+This file is not meant to be read by a Web browser directly. 
+Instead you're meant to copy the URL for the file, and paste it into your favorite RSS reader. -->
+<channel>
+
+<category>space</category>
+<language>en-GB</language>
+<ttl>600</ttl>
+<copyright>Copyright European Space Agency</copyright>
+<managingEditor>rss@esa.int (ESA rss manager)</managingEditor>
+
+				
+	
+					  
+
+				
+
+
+
+
+												
+
+	 
+
+
+						
+				 
+							
+				 
+							
+							 
+							
+				
+				 
+						
+ 
+	  
+	
+	
+		
+
+<title>ESA Top News</title>
+<description>ESA Top News</description>
+<link>https://www.esa.int/</link>
+<atom:link href="https://www.esa.int/rssfeed/TopNews" rel="self" type="application/rss+xml" />
+	<pubDate>Wed, 21 Jan 2026 13:54:00 +0100</pubDate>
+<lastBuildDate>Wed, 21 Jan 2026 13:54:00 +0100</lastBuildDate>
+<docs>http://blogs.law.harvard.edu/tech/rss</docs> 
+<item>
+	
+ 
+							 
+
+
+
+	
+	
+
+	
+										
+						
+											
+<title>εpsilon</title>
+<description><![CDATA[
+	<img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/01/epsilon_website/27067642-5-eng-GB/Epsilon_website_card_full.jpg" alt="εpsilon website">
+	<p>εpsilon</p>
+	<p></p>
+]]></description>
+<link><![CDATA[https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/epsilon]]></link>
+
+<guid isPermaLink="false">377f7e2bba7077394840fd7a17897b49</guid>
+<pubDate>Wed, 21 Jan 2026 13:54:00 +0100</pubDate>
+	</item><item>
+	
+ 
+	 
+
+
+
+	
+	
+
+	
+										
+						
+											
+<title>Week in images: 19-23 October 2026</title>
+<description><![CDATA[
+	<img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/10/stars_brewing_in_a_nebulous_cauldron/27584043-1-eng-GB/Stars_brewing_in_a_nebulous_cauldron_card_full.jpg" alt="Stars brewing in a nebulous cauldron">
+	<p>Week in images: 19-23 October 2026</p>
+	<p>Discover our week through the lens</p>
+]]></description>
+<link><![CDATA[https://www.esa.int/About_Us/Week_in_images/Week_in_images_19-23_October_2026]]></link>
+
+<guid isPermaLink="false">353bd6345c5862277040b76502ea3d05</guid>
+<pubDate>Fri, 23 Oct 2026 15:15:00 +0200</pubDate>
+	</item><item>
+	
+
+
+
+
+		
+	
+					
+						
+<title>Earth from Space: The pink city</title>
+<description><![CDATA[
+	<img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/10/earth_from_space_the_pink_city/27589033-1-eng-GB/Earth_from_Space_The_pink_city_card_full.jpg" alt="This image shows a detailed view of the city of Toulouse in southwest France, with its terracotta tiled rooftops lending it the nickname la ville rose, or the pink city.">
+	Image:
+			This image shows a detailed view of the city of Toulouse in southwest France, with its terracotta tiled rooftops lending it the nickname la ville rose, or the pink city.
+	]]></description>
+<link><![CDATA[https://www.esa.int/ESA_Multimedia/Images/2026/10/Earth_from_Space_The_pink_city]]></link>
+
+<guid isPermaLink="false">2c3f209f18e82ff7430c6d391f7685bb</guid>
+<pubDate>Fri, 23 Oct 2026 10:00:00 +0200</pubDate>
+	</item><item>
+	
+
+
+
+
+		
+	
+					
+						
+<title>350th ESA Council: Media information session</title>
+<description><![CDATA[
+	<img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/videos/2026/10/350th_esa_council_media_information_session/27588859-3-eng-GB/350th_ESA_Council_Media_information_session_card_full.jpg" alt="">
+	Video: 
+			01:45:34
+				<p>Watch the replay of the media information session where ESA Director General Josef Aschbacher and ESA Council Chair at delegate level Juan Carlos Cortés outline the key decisions and main outcomes of the 350th Council meeting held at ESA Headquarters in Paris on&nbsp;21—22 October 2026.</p>
+	]]></description>
+<link><![CDATA[https://www.esa.int/ESA_Multimedia/Videos/2026/10/350th_ESA_Council_Media_information_session]]></link>
+
+<guid isPermaLink="false">e2c6c36777d80b6b680a629c75dd6a02</guid>
+<pubDate>Thu, 22 Oct 2026 16:00:00 +0200</pubDate>
+	</item><item>
+	
+
+
+
+
+		
+	
+					
+						
+<title>ESA Open Days 2026</title>
+<description><![CDATA[
+	<img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/videos/2026/10/esa_open_days_2026/27587076-1-eng-GB/ESA_Open_Days_2026_card_full.png" alt="">
+	Video: 
+			00:00:49
+				<p>ESA Open Days 2026 welcomed over 23 000 visitors across its six establishments, giving the public the opportunity to discover more about Europe’s space activities, meet the people behind the missions and explore how ESA is shaping the future of space.</p>
+	]]></description>
+<link><![CDATA[https://www.esa.int/ESA_Multimedia/Videos/2026/10/ESA_Open_Days_2026]]></link>
+
+<guid isPermaLink="false">e471fd7abc044319a62f4cd2e729b4de</guid>
+<pubDate>Thu, 22 Oct 2026 11:00:00 +0200</pubDate>
+	</item><item>
+	
+				
+
+
+	
+	
+
+	
+										
+						
+											
+<title>ESA Council approves appointment of two new directors</title>
+<description><![CDATA[
+	<img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2016/11/europe_seen_by_ers_satellite/16486928-1-eng-GB/Europe_seen_by_ERS_satellite_card_full.jpg" alt="">
+	<p>The European Space Agency Council has approved the appointment of two new directors: Andrzej Banasiak as Director of Commercialisation and Industry Partnership, and Nicolaus Hanowski as Director of Space Operations.</p>
+]]></description>
+<link><![CDATA[https://www.esa.int/About_Us/Corporate_news/ESA_Council_approves_appointment_of_two_new_directors]]></link>
+
+<guid isPermaLink="false">1283519a456a8a590968a1838149d478</guid>
+<pubDate>Thu, 22 Oct 2026 10:26:00 +0200</pubDate>
+	</item><item>
+	
+
+
+
+
+		
+	
+					
+						
+<title>Stars brewing in a nebulous cauldron</title>
+<description><![CDATA[
+	<img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/10/stars_brewing_in_a_nebulous_cauldron/27584043-1-eng-GB/Stars_brewing_in_a_nebulous_cauldron_card_full.jpg" alt="Stars brewing in a nebulous cauldron">
+	Image:
+			Stars brewing in a nebulous cauldron
+	]]></description>
+<link><![CDATA[https://www.esa.int/ESA_Multimedia/Images/2026/10/Stars_brewing_in_a_nebulous_cauldron]]></link>
+
+<guid isPermaLink="false">a0b7a16a405e20b25ce4cb5e99c96e85</guid>
+<pubDate>Thu, 22 Oct 2026 10:00:00 +0200</pubDate>
+	</item><item>
+	
+				
+
+
+	
+	
+
+	
+										
+						
+											
+<title>Euclid discovers new comet </title>
+<description><![CDATA[
+	<img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/10/comet_c_2026_s1_euclid_streaks_across_the_sky/27582276-1-eng-GB/Comet_C_2026_S1_Euclid_streaks_across_the_sky_card_full.gif" alt="Comet C/2026 S1 (Euclid) streaks across the sky">
+	<p>The European Space Agency’s Euclid space telescope has discovered its first previously unknown comet, in images taken between 16 and 24 September 2026.</p>
+]]></description>
+<link><![CDATA[https://www.esa.int/Science_Exploration/Space_Science/Euclid/Euclid_discovers_new_comet]]></link>
+
+<guid isPermaLink="false">a7370f64749f2ddcecd07b2a0292da3e</guid>
+<pubDate>Mon, 19 Oct 2026 14:00:00 +0200</pubDate>
+	</item><item>
+	
+ 
+	 
+
+
+
+	
+	
+
+	
+										
+						
+											
+<title>Week in images: 12-16 October 2026</title>
+<description><![CDATA[
+	<img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/images/2026/10/drilling_down_for_the_moon/27577973-1-eng-GB/Drilling_down_for_the_Moon_card_full.jpg" alt="Drilling down for the Moon ">
+	<p>Week in images: 12-16 October 2026</p>
+	<p>Discover our week through the lens</p>
+]]></description>
+<link><![CDATA[https://www.esa.int/About_Us/Week_in_images/Week_in_images_12-16_October_2026]]></link>
+
+<guid isPermaLink="false">2d34ee68d8fba3ceeca83679f9ac230a</guid>
+<pubDate>Tue, 13 Oct 2026 15:10:00 +0200</pubDate>
+	</item>
+
+
+
+
+</channel>
+</rss>

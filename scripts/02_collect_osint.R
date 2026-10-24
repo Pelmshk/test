@@ -42,6 +42,7 @@ if (is.na(this_file) || !nzchar(this_file)) this_file <- "scripts/02_collect_osi
 source(file.path(dirname(this_file), "00_config.R"))
 
 OFFLINE <- "--offline" %in% commandArgs(trailingOnly = TRUE)
+POLITE  <- !OFFLINE   # в offline-режиме сетевые паузы не нужны
 args    <- commandArgs(trailingOnly = TRUE)
 MAX_RETRIES <- as.integer(gsub("^--retries=", "", grep("^--retries=", args, value = TRUE)[1]))
 if (is.na(MAX_RETRIES)) MAX_RETRIES <- 3L
@@ -55,7 +56,11 @@ suppressPackageStartupMessages({
 
 set.seed(42)  # детерминированный джиттер пауз -> воспроизводимость таймингов
 
-SNAPSHOT_DATE <- Sys.Date()
+# Дата среза: фиксирована в 00_config.R (DATA_CUTOFF_DATE) — воспроизводимость.
+# Можно переопределить флагом --snapshot=YYYY-MM-DD для нового планового среза.
+SNAPSHOT_DATE <- as.Date(DATA_CUTOFF_DATE)
+.snap_arg <- grep("^--snapshot=", args, value = TRUE)[1]
+if (!is.na(.snap_arg)) SNAPSHOT_DATE <- as.Date(sub("^--snapshot=", "", .snap_arg))
 SNAPSHOT_TS   <- format(Sys.time(), "%Y%m%d_%H%M%S")
 RAW_DIR       <- PATHS$data_raw
 dir.create(RAW_DIR, recursive = TRUE, showWarnings = FALSE)
@@ -206,11 +211,12 @@ fetch_via_proxy <- function(url, expect = "feed") {
     body <- strip_reader_preamble(r$txt %||% "")
     if (!is.character(body)) body <- ""
     good <- switch(expect,
-      feed = looks_like_feed(body) || grepl("### \\[.+\\]\\(https?://", body),
+      feed = looks_like_feed(body) ||
+             grepl("^#{2,4}\\s*\\[.+?\\]\\(https?://", body),
       json = looks_like_json(body) || grepl('"cveID"|"articles"', body),
       any  = nzchar(body) && !is_antibot_page(body))
     if (isTRUE(good)) return(list(txt = body, via = nm))
-    Sys.sleep(runif(1, 1, 2))
+    if (POLITE) Sys.sleep(runif(1, 1, 2))
   }
   list(txt = NULL, via = NA_character_)
 }
@@ -245,11 +251,17 @@ smart_fetch <- function(url, cache_dir, cache_name, expect = c("feed", "json", "
   ## 1. Кэш (гарантия воспроизводимости и offline-рендера)
   if (file.exists(fpath)) {
     txt <- paste(readLines(fpath, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+    # Кэшируются ДВА формата: чистый ответ (direct/allorigins) и reader-markdown
+    # от r.jina.ai ("...Markdown Content:\n<payload>"). Для markdown-кэша
+    # извлекаем полезную нагрузку до проверок валидности.
+    payload <- strip_reader_preamble(txt)
     good_cached <- switch(expect,
-      feed = looks_like_feed(txt),
-      json = looks_like_json(txt),
-      any  = nzchar(txt) && !is_antibot_page(txt))
-    if (isTRUE(good_cached) && !is_antibot_page(txt)) return(list(txt = txt, via = "cache"))
+      feed = looks_like_feed(payload) ||
+             grepl("^#{2,4}\\s*\\[.+?\\]\\(https?://", payload),   # markdown-фид
+      json = looks_like_json(payload) || grepl('"articles"|\'articles\'|"cveID"', payload),
+      any  = nzchar(payload) && !is_antibot_page(payload))
+    if (isTRUE(good_cached) && !is_antibot_page(payload))
+      return(list(txt = payload, via = "cache"))
   }
   if (OFFLINE) return(list(txt = NULL, via = NA_character_))
 
@@ -272,7 +284,7 @@ smart_fetch <- function(url, cache_dir, cache_name, expect = c("feed", "json", "
     wait <- min(60, round((2 ^ attempt) * runif(1, 0.8, 1.6)))  # джиттер (seed=42)
     log_step("FETCH", sprintf("попытка %d/%d не удалась (HTTP %s) → пауза %ss: %s",
                               attempt, MAX_RETRIES, r$status, wait, url))
-    Sys.sleep(wait)
+    if (POLITE) Sys.sleep(wait)
   }
 
   ## 3. Fallback-цепочка reader-прокси (r.jina.ai и др.)
@@ -344,6 +356,16 @@ collect_rss <- function() {
       it <- parse_feed_xml(r$txt)                                  # XML-фид
       if (is.null(it) || !nrow(it)) it <- parse_markdown_links(r$txt)  # markdown от r.jina.ai
     }
+    # Offline-фолбэк: smart_fetch строг к формату; пробуем распарсить кэш как есть
+    if ((is.null(it) || !nrow(it)) && OFFLINE) {
+      cf <- file.path(RAW_DIR, "rss", sprintf("%s.xml", gsub("[^A-Za-z0-9]", "_", fd$source_feed)))
+      if (file.exists(cf)) {
+        payload <- strip_reader_preamble(paste(readLines(cf, warn = FALSE, encoding = "UTF-8"), collapse = "\n"))
+        it <- parse_feed_xml(payload)
+        if (is.null(it) || !nrow(it)) it <- parse_markdown_links(payload)
+        if (!is.null(it) && nrow(it)) r <- list(txt = payload, via = "cache-loose")
+      }
+    }
     if (is.null(it) || !nrow(it)) { blocked <- blocked + 1L
       log_step("RSS", sprintf("x  %-22s — нет валидного XML (антибот/ошибка)", fd$source_feed)); next }
     hit <- hit + 1L
@@ -351,10 +373,26 @@ collect_rss <- function() {
     rows[[fd$source_feed]] <- transform(it,
       source = "RSS", source_feed = fd$source_feed, category = fd$category,
       event_date = NA_character_, snapshot_date = SNAPSHOT_DATE)
-    Sys.sleep(runif(1, 1.5, 4))   # вежливая пауза с джиттером
+    if (POLITE) Sys.sleep(runif(1, 1.5, 4))   # вежливая пауза с джиттером
   }
   log_step("RSS", sprintf("успех %d / %d, заблокировано %d", hit, nrow(RSS_FEEDS), blocked))
   if (length(rows)) do.call(rbind, rows) else NULL
+}
+
+# Разбор ответа GDELT: чистый JSON | application/javascript+json ({...}) |
+# reader-markdown с JSON внутри. Возвращает data.frame articles или NULL.
+parse_gdelt_payload <- function(txt) {
+  if (is.null(txt) || !nzchar(txt)) return(NULL)
+  body <- strip_reader_preamble(txt)
+  from_json_str <- function(z) tryCatch(
+    jsonlite::fromJSON(z, simplifyDataFrame = TRUE)$articles, error = function(e) NULL)
+  a <- from_json_str(body)                                    # вариант 1: чистый JSON
+  if (is.null(a) || !length(a)) {                             # вариант 2: {...} внутри текста
+    m <- regexpr("\\{.*\\}", body, perl = TRUE)
+    if (m > 0) a <- from_json_str(substr(body, m[1], m[1] + attr(m, "used") - 1))
+  }
+  if (!is.null(a) && length(a)) return(a)
+  NULL
 }
 
 # ----------------------------------------------------------------------------
@@ -373,15 +411,14 @@ collect_gdelt <- function(max_records = 75L) {
                  base, curl::curl_escape(q), max_records, start, endd)
     got <- NULL
     for (attempt in 1:2) {
-      Sys.sleep(if (attempt == 1) max(1, 6 + runif(1, 0, 2)) else 35)  # окно rate-limit GDELT
+      if (POLITE) Sys.sleep(if (attempt == 1) max(1, 6 + runif(1, 0, 2)) else 35)  # окно rate-limit GDELT
       r <- smart_fetch(u, file.path(RAW_DIR, "gdelt"),
                        sprintf("gdelt_%02d_%s.json", i, gsub("[^A-Za-z0-9]", "_", q)),
                        expect = "json")
       if (!is.null(r$txt)) { got <- r$txt; break }
     }
     if (is.null(got)) { log_step("GDELT", sprintf("x  '%s' — rate-limit/недоступен", q)); next }
-    j <- tryCatch(jsonlite::fromJSON(got, simplifyDataFrame = TRUE), error = function(e) NULL)
-    a <- j$articles
+    a <- parse_gdelt_payload(got)
     if (is.null(a) || !length(a)) {
       # r.jina.ai мог отдать markdown со ссылками на статьи вместо JSON
       md <- parse_markdown_links(got, default_date = NA_character_)
@@ -443,7 +480,7 @@ collect_cisa <- function() {
         source = "CISA", source_feed = nm, category = "mixed",
         event_date = NA_character_, snapshot_date = SNAPSHOT_DATE)
     }
-    Sys.sleep(runif(1, 2, 5))
+    if (POLITE) Sys.sleep(runif(1, 2, 5))
   }
   if (length(rows)) { d <- do.call(rbind, rows); d[!duplicated(d$url), , drop = FALSE] } else NULL
 }
@@ -474,7 +511,7 @@ collect_nasa <- function() {
     if (nrow(sel)) rows[[nm]] <- transform(sel,
       source = if (grepl("ESA", nm)) "ESA" else "NASA", source_feed = nm,
       category = "space", event_date = NA_character_, snapshot_date = SNAPSHOT_DATE)
-    Sys.sleep(runif(1, 1.5, 3.5))
+    if (POLITE) Sys.sleep(runif(1, 1.5, 3.5))
   }
   if (length(rows)) do.call(rbind, rows) else NULL
 }
@@ -531,3 +568,59 @@ main <- function() {
 }
 
 corpus <- main()
+
+# ----------------------------------------------------------------------------
+# 7. Экспорт плоских файлов для 03_nlp_pipeline.R (мост между сбором и NLP)
+#    rss_items.rds   — все элементы фидов (до релеванс-фильтра, с издателем)
+#    gdelt_candidates.rds — артефакты GDELT в формате, ожидаемом NLP-скриптом
+# ----------------------------------------------------------------------------
+export_for_nlp <- function() {
+  ## RSS: парсим ВСЕ закешированные фиды (raw-корпус для NLP шире, чем corpus)
+  rss_dir <- file.path(RAW_DIR, "rss")
+  feed_map <- if (exists("RSS_FEEDS")) {
+    setNames(as.list(RSS_FEEDS$source_feed), basename(RSS_FEEDS$url))
+  } else NULL
+  rf <- list.files(rss_dir, pattern = "\\.xml$", full.names = TRUE)
+  items <- lapply(rf, function(f) {
+    txt <- paste(readLines(f, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+    payload <- strip_reader_preamble(txt)          # кэш может быть в reader-markdown
+    it <- parse_feed_xml(payload)
+    if (is.null(it) || !nrow(it)) it <- parse_markdown_links(payload)
+    if (is.null(it) || !nrow(it)) return(NULL)
+    nm <- sub("\\.xml$", "", basename(f))
+    it$publisher <- nm
+    it
+  })
+  items <- do.call(rbind, Filter(Negate(is.null), items))
+  if (!is.null(items) && nrow(items)) {
+    # Даты markdown-элементов ("Fri, 23 Oct 2026 ...") -> ISO-8601 (lubridate::parse_date_time)
+    needs_fix <- !is.na(items$pub_date) & nzchar(items$pub_date) &
+                 !grepl("^\\d{4}-\\d{2}|^\\d{8}T", items$pub_date)
+    if (any(needs_fix)) {
+      parsed <- lubridate::parse_date_time(items$pub_date[needs_fix],
+                orders = c("a b d Y T H M S z", "a b d Y H M S z", "a b d Y", "Y-m-d H:M:S", "Y-m-d"),
+                quiet = TRUE)
+      items$pub_date[needs_fix] <- ifelse(is.na(parsed), NA_character_, format(parsed, "%Y-%m-%dT%H:%M:%SZ"))
+    }
+    items <- items[!duplicated(items$link %||% items$title), , drop = FALSE]
+    saveRDS(items, file.path(PATHS$data_proc, "rss_items.rds"))
+    log_step("EXPORT", sprintf("rss_items.rds: %d элементов фидов", nrow(items)))
+  }
+
+  ## GDELT: читаем закешированные JSON напрямую (без фильтра по ключевым словам)
+  gd <- list.files(file.path(RAW_DIR, "gdelt"), pattern = "\\.json$", full.names = TRUE)
+  grows <- lapply(gd, function(f) {
+    txt <- paste(readLines(f, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
+    a <- parse_gdelt_payload(txt)
+    if (is.null(a) || !length(a)) return(NULL)
+    a$pattern <- sub("^gdelt_\\d+_|\\.json$", "", basename(f))
+    a
+  })
+  grows <- do.call(rbind, Filter(Negate(is.null), grows))
+  if (!is.null(grows) && nrow(grows)) {
+    grows <- grows[!duplicated(grows$url), , drop = FALSE]
+    saveRDS(grows, file.path(PATHS$data_proc, "gdelt_candidates.rds"))
+    log_step("EXPORT", sprintf("gdelt_candidates.rds: %d статей GDELT", nrow(grows)))
+  }
+}
+export_for_nlp()

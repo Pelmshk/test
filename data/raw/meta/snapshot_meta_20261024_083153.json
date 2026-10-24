@@ -1,0 +1,9 @@
+{
+  "snapshot_date": "2026-10-24",
+  "run_ts": "20261024_083153",
+  "seed": 42,
+  "taxonomy_ver": "1.0.0",
+  "n_rows": 0,
+  "by_source": [],
+  "raw_cache_dir": "./data/raw"
+}

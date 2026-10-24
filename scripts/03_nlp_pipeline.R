@@ -32,16 +32,23 @@ gdelt_f <- file.path(PATHS$data_proc, "gdelt_candidates.rds")
 rss_f   <- file.path(PATHS$data_proc, "rss_items.rds")
 if (file.exists(gdelt_f)) {
   g <- readRDS(gdelt_f)
-  mentions <- rbind(mentions, transform(data.frame(
-    text = paste(g$title, g$domain, sep = " | "), url = g$url,
-    date = substr(g$seendate, 1, 8), publisher = "GDELT"),
-    publisher = paste(g$publisher <- "GDELT")))
+  mentions <- rbind(mentions, data.frame(
+    text      = paste(g$title, g$domain %||% "", sep = " | "),
+    url       = as.character(g$url),
+    date      = substr(as.character(g$seendate), 1, 8),
+    publisher = "GDELT",
+    stringsAsFactors = FALSE))
 }
 if (file.exists(rss_f)) {
   r <- readRDS(rss_f)
-  mentions <- rbind(mentions, data.frame(text = paste(r$title, r$desc, sep = ". "),
-                                         url = r$link, date = r$pub_date,
-                                         publisher = r$publisher, stringsAsFactors = FALSE))
+  # совместимость имён колонок: description (02-экспорт) / desc (старый формат)
+  desc_col <- if ("description" %in% names(r)) r$description else r$desc
+  mentions <- rbind(mentions, data.frame(
+    text      = paste(r$title, desc_col, sep = ". "),
+    url       = as.character(r$link),
+    date      = as.character(r$pub_date),
+    publisher = as.character(r$publisher),
+    stringsAsFactors = FALSE))
 }
 log_info("Входных упоминаний: ", nrow(mentions))
 if (!nrow(mentions)) { log_info("Корпус пуст — сбор не дал данных. Выход."); quit(save = "no") }
