@@ -224,8 +224,12 @@ fetch_via_proxy <- function(url, expect = "feed") {
 # Парсинг markdown-списка ссылок (ответ r.jina.ai для заблокированных RSS):
 # формат "### [Заголовок](URL)" + опц. строки текста/даты после
 parse_markdown_links <- function(txt, default_date = NA_character_) {
+  if (is.null(txt) || !nzchar(txt)) return(NULL)
+  # Нормализация переносов строк: readLines+collapse даёт "\n", но сетевой
+  # ответ может содержать "\r\n"; без нормализации grep по "$" не срабатывает.
+  txt   <- gsub("\r\n?|\u2028|\u2029", "\n", txt)
   lines <- unlist(strsplit(txt, "\n", fixed = TRUE))
-  idx   <- grep("^#{2,4}\\s*\\[(.+?)\\]\\((https?://[^)]+)\\)", lines)
+  idx   <- grep("^#{2,4}\\s*\\[.+?\\]\\(https?://[^)]+\\)", lines)
   if (!length(idx)) return(NULL)
   mk <- regmatches(lines[idx],
         regexec("^#{2,4}\\s*\\[(.+?)\\]\\((https?://[^)]+)\\)", lines[idx]))
@@ -506,7 +510,8 @@ collect_nasa <- function() {
       if (is.null(it) || !nrow(it)) it <- parse_markdown_links(r$txt)
     }
     if (is.null(it) || !nrow(it)) { log_step("NASA", sprintf("x  %s — нет данных", nm)); next }
-    sel <- it[grepl(NASA_KW, paste(it$title, it$description), ignore.case = TRUE), ]
+    # Защита от NA в description при фильтрации по ключевым словам
+    sel <- it[grepl(NASA_KW, paste(it$title, it$description %||% ""), ignore.case = TRUE), ]
     log_step("NASA", sprintf("OK %s: %d всего, %d релевантны (%s)", nm, nrow(it), nrow(sel), r$via))
     if (nrow(sel)) rows[[nm]] <- transform(sel,
       source = if (grepl("ESA", nm)) "ESA" else "NASA", source_feed = nm,
@@ -538,8 +543,14 @@ main <- function() {
     names(corpus) <- schema_cols
     corpus$snapshot_date <- as.Date(character(0))
   } else {
-    corpus <- do.call(rbind, c(lapply(parts, function(d) d[, schema_cols, drop = FALSE]),
-                               make.row.names = FALSE, stringsAsFactors = FALSE))
+    # Гарантируем наличие всех колонок схемы в каждой части (устойчивость к
+    # различиям форматов XML-фида / markdown-парсера), затем склейка.
+    align_schema <- function(d) {
+      for (cc in schema_cols) if (is.null(d[[cc]])) d[[cc]] <- NA_character_
+      d[, schema_cols, drop = FALSE]
+    }
+    parts <- lapply(parts, align_schema)
+    corpus <- do.call(rbind, c(parts, list(make.row.names = FALSE, stringsAsFactors = FALSE)))
     rownames(corpus) <- NULL
   }
 

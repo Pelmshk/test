@@ -1,0 +1,12 @@
+{
+  "snapshot_date": "2026-10-24",
+  "run_ts": "20261024_090013",
+  "seed": 42,
+  "taxonomy_ver": "1.0.0",
+  "n_rows": 217,
+  "by_source": {
+    "GDELT": 110,
+    "RSS": 107
+  },
+  "raw_cache_dir": "./data/raw"
+}
