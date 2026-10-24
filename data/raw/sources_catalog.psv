@@ -1,0 +1,18 @@
+# ============================================================
+# Каталог источников OSINT для пайплайна сбора (Этап 2)
+# Формат: pipe-separated. Статусы: active / deferred (запланирован).
+# reliability: high = первичные официальные источники, medium = отраслевые СМИ,
+#              low = блоги/агрегаторы (требуют подтверждения high-источником).
+# ============================================================
+source_id|publisher|url_pattern|source_type|reliability|status|notes
+S001|CISA|https://www.cisa.gov/news-events/cybersecurity-advisories|advisory|high|active|Advisories по ICS/спутниковым стекам (VSAT, SONiK упоминания)
+S002|NVD|https://nvd.nist.gov/vp-nec/nvd-api|cve|high|deferred|API требует ключ; интеграция на Этапе 2 (httr + jsonlite)
+S003|NASA OLIS|https://nasa.gov (Office of Logicated Inspector General,Lessons Learned)|report|high|deferred|LLIS + отчёты OIG по кибербезопасности миссий
+S004|SpaceNews|https://spacenews.com/feed/|news|medium|active|RSS; новостные упоминания инцидентов
+S005|Space Safety (NSS)|https://spacesafety.com|news|medium|deferred|Новости космической безопасности
+S006|Spaceflight Now|https://spaceflightnow.com/feed/|news|medium|deferred|RSS
+S007|MITRE ATLAS|https://atlas.mitre.org/datasets/ (ATLAS STIX bundle)|dataset|high|active|Справочник техник для маппинга векторов (не источник инцидентов)
+S008|ESA Space Security|https://www.esa.int/Space_Safety|report|high|deferred|Обзоры SSA/киберугроз
+S009|SecureWorld Journal|https://www.secureworld.io|report|medium|deferred|Аналитика инцидентов space sector
+S010|GDELT 2.0|https://api.gdeltproject.org/api/v2/doc/doc|dataset|low|deferred|Событийный поиск: queries "satellite jamming", "GPS spoofing" и т.п.; low reliability — только для гипотез
+S011|UkraineCyberCentre|https://cyber.gov.ua / gov.uk NCSCalerts|official_statement|medium|deferred|Заявления о глушении Viasat/Starlink -> помечать disputed без второго независимого источника

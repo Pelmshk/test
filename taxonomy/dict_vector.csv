@@ -1,0 +1,13 @@
+vector_code,name,mitre_atlas,mitre_attack,veris_family
+V-JAM,Глушение сигнала (uplink/downlink/GNSS),A0054 Jam signaling,T1499.004,Impact
+V-SPF,Спуфинг/meaconing GNSS или команд,A0053 Spoof satellite signal,T1114.003,Impact
+V-INT,Перехват/анализ телеметрии,A0031 Collection in space,T1040,Eavesdropping
+V-UPL,Несанкционированный uplink / перехват управления,A0040 Hijack satellite software,T1071.001,Intrusion
+V-MAL,Вредонос на наземной инфраструктуре,,T1059,Malware
+V-EXP,Эксплуатация уязвимости бортового/наземного ПО,,T1190,Exploit Vulnerability
+V-CRED,Компрометация учётных данных/доступа,,T1078,Unauthorized Error
+V-SUP,Атака на цепочку поставок (SW/HW),A0021 Compromise supply chain,T1195,Third-party Software
+V-DOS,Отказ услуг (DDoS станций/сервисов),A0013 DDoS services,T1499,Availability DoS
+V-INS,Инсайдерская угроза,,T1091,Intrusion + Social Engineering
+V-PHISH,Фишинг против персонала оператора/вендора,,T1566,Social Engineering
+V-UNAUTH-DISC,Несанкционированный доступ/раскрытие данных миссии,A0032 Data from information repositories,T1602,Data Breach

@@ -1,0 +1,5 @@
+data/processed/
+db/incidents.sqlite
+*.rds
+*.sqlite
+data/processed/
