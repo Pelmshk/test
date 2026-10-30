@@ -1,1 +1,2 @@
-logs_*.txt
+*.sqlite-shm
+*.sqlite-wal

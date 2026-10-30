@@ -24,9 +24,32 @@ source(file.path(dirname(this_file), "00_config.R"))
 
 suppressWarnings(library(stringr))
 
+`%||%` <- function(a, b) if (is.null(a) || length(a) == 0) b else a
+
 ## ---------- 1. Вход: собранные упоминания ----------------------------------
 mentions <- data.frame(text = character(), url = character(), date = character(),
                         publisher = character(), stringsAsFactors = FALSE)
+
+# 1a. Основной корпус единой схемы (corpus_raw.rds / corpus_raw_YYYYMMDD.csv):
+#     содержит RSS + GDELT + CISA + NASA с аннотациями (description).
+corpus_f <- file.path(PATHS$data_proc, "corpus_raw.rds")
+if (!file.exists(corpus_f)) {
+  cf2 <- list.files(PATHS$data_proc, pattern = "^corpus_raw_.*\\.csv$", full.names = TRUE)
+  if (length(cf2)) corpus_f <- sort(cf2)[length(cf2)]
+}
+if (file.exists(corpus_f)) {
+  cr <- if (grepl("\\.csv$", corpus_f))
+          read.csv(corpus_f, stringsAsFactors = FALSE, encoding = "UTF-8")
+        else readRDS(corpus_f)
+  txt <- paste(cr$title %||% "", cr$description %||% "", sep = ". ")
+  mentions <- rbind(mentions, data.frame(
+    text      = txt,
+    url       = as.character(cr$url),
+    date      = substr(as.character(cr$pub_date), 1, 10),
+    publisher = as.character(cr$source_feed %||% cr$source),
+    stringsAsFactors = FALSE))
+  log_info("Из corpus_raw: ", nrow(cr))
+}
 
 gdelt_f <- file.path(PATHS$data_proc, "gdelt_candidates.rds")
 rss_f   <- file.path(PATHS$data_proc, "rss_items.rds")

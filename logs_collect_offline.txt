@@ -1,0 +1,44 @@
+[2026-10-24 13:35:02] [PIPELINE] срез 2026-10-24; режим: offline (кэш); retries=3
+[2026-10-24 13:35:02] [RSS] парсинг 16 фидов (browser-headers + retry + proxy-fallback)
+[2026-10-24 13:35:02] [RSS] OK SpaceNews                12 шт. (cache-loose)
+[2026-10-24 13:35:02] [RSS] OK SpaceflightNow           10 шт. (cache-loose)
+[2026-10-24 13:35:02] [RSS] x  SpaceSafetyMagazine    — нет валидного XML (антибот/ошибка)
+[2026-10-24 13:35:02] [RSS] x  ParabolicArc           — нет валидного XML (антибот/ошибка)
+[2026-10-24 13:35:02] [RSS] x  SpaceWatchGlobal       — нет валидного XML (антибот/ошибка)
+[2026-10-24 13:35:02] [RSS] x  ArsTechnica_Space      — нет валидного XML (антибот/ошибка)
+[2026-10-24 13:35:02] [RSS] OK NASASpaceflight          10 шт. (cache-loose)
+[2026-10-24 13:35:02] [RSS] x  PayloadSpace           — нет валидного XML (антибот/ошибка)
+[2026-10-24 13:35:02] [RSS] OK TheRegister_Science      50 шт. (cache-loose)
+[2026-10-24 13:35:02] [RSS] x  TheHackersNews         — нет валидного XML (антибот/ошибка)
+[2026-10-24 13:35:03] [RSS] x  DarkReading            — нет валидного XML (антибот/ошибка)
+[2026-10-24 13:35:03] [RSS] OK SecurityWeek             10 шт. (cache-loose)
+[2026-10-24 13:35:03] [RSS] x  KrebsOnSecurity        — нет валидного XML (антибот/ошибка)
+[2026-10-24 13:35:03] [RSS] x  TheRecord              — нет валидного XML (антибот/ошибка)
+[2026-10-24 13:35:03] [RSS] OK BleepingComputer         15 шт. (cache-loose)
+[2026-10-24 13:35:03] [RSS] x  ControlGlobal          — нет валидного XML (антибот/ошибка)
+[2026-10-24 13:35:03] [RSS] успех 6 / 16, заблокировано 10
+[2026-10-24 13:35:03] [GDELT] 12 поисковых паттернов, темп >=6 c/запрос
+[2026-10-24 13:35:03] [GDELT] x  'satellite hack' — rate-limit/недоступен
+[2026-10-24 13:35:03] [GDELT] OK 'satellite cyberattack' — 41 статей
+[2026-10-24 13:35:03] [GDELT] OK 'satellite jamming' — 0 статей
+[2026-10-24 13:35:03] [GDELT] OK 'satellite spoofing' — 0 статей
+[2026-10-24 13:35:03] [GDELT] x  'GNSS spoofing' — rate-limit/недоступен
+[2026-10-24 13:35:03] [GDELT] OK 'GPS jamming attack' — 75 статей
+[2026-10-24 13:35:03] [GDELT] OK 'ground station cyber' — 0 статей
+[2026-10-24 13:35:03] [GDELT] OK 'space cyber incident' — 0 статей
+[2026-10-24 13:35:03] [GDELT] x  'satellite telemetry intercepted' — rate-limit/недоступен
+[2026-10-24 13:35:03] [GDELT] x  'Starlink jamming' — rate-limit/недоступен
+[2026-10-24 13:35:03] [GDELT] x  'Viasat hack' — rate-limit/недоступен
+[2026-10-24 13:35:03] [GDELT] x  'Ka-SAT attack' — rate-limit/недоступен
+[2026-10-24 13:35:03] [CISA] OK RSS all: 23/30 записей релевантны (cache-loose)
+[2026-10-24 13:35:03] [CISA] x  ics — недоступен (антибот на всех каналах)
+[2026-10-24 13:35:03] [CISA] x  kev — JSON не распарсен
+[2026-10-24 13:35:04] [NASA] x  NASA_releases — нет данных
+[2026-10-24 13:35:04] [NASA] x  NASA_safety — нет данных
+[2026-10-24 13:35:04] [NASA] x  NASA_station — нет данных
+[2026-10-24 13:35:04] [NASA] x  ESA_news — нет данных
+Error in `[[<-.data.frame`(`*tmp*`, cc, value = NA_character_) : 
+  replacement has 1 row, data has 0
+Calls: main -> lapply -> FUN -> [[<- -> [[<-.data.frame
+In addition: There were 50 or more warnings (use warnings() to see the first 50)
+Execution halted
